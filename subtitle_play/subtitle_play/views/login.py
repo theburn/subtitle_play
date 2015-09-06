@@ -34,34 +34,32 @@ def auth_login(request):
     log_msg = {\
                "0": u"用户登录成功",\
                "1": u"输入用户名或者密码错误",\
-               "2": u"用户禁止登录",\
-               "3": u"用户不存在",\
-               "4": u"输入用户名或者密码错误",\
-               "10": u"验证码错误",\
-               "20": u"尝试次数过多，请稍后登录",\
                }
-    username  =  request.POST.get('username', '').strip(" ")
-    password  =  request.POST.get('password', '').strip(" ")
-    #获取用户IP
-    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
-        ip = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        ip = request.META['REMOTE_ADDR']
-    #保存ip到session
-    request.session['ip'] = ip
-    #保存username到session
-    request.session['user_name'] = username
 
+    if request.is_ajax() and request.method == "POST":
+        username  =  request.POST.get('username', '').strip(" ")
+        password  =  request.POST.get('password', '').strip(" ")
+        #获取用户IP
+        if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+            ip = request.META['HTTP_X_FORWARDED_FOR']
+        else:
+            ip = request.META['REMOTE_ADDR']
+        #保存ip到session
+        request.session['ip'] = ip
+        #保存username到session
+        request.session['user_name'] = username
 
-    
-    #####
-    update_user = authenticate(username = username,  password = password)
-    if update_user is not None and update_user.is_active:
-        login(request, update_user)
-        res_login['res_login'] = "0"
+        #####
+        update_user = authenticate(username = username,  password = password)
+        if update_user is not None and update_user.is_active:
+            login(request, update_user)
+            res_login['res_login'] = "0"
+        else:
+            res_login['res_login'] = "1"
     else:
-		res_login['res_login'] = "1"
-    
+        res_login['res_login'] = "1"
+
+        
 
     log_event = u"用户登录系统"
     res_key = str(res_login['res_login'])
