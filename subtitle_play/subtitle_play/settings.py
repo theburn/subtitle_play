@@ -25,7 +25,12 @@ SECRET_KEY = 'p#o=v3v63zyg&y8h5dtx@2p7^d_@%t_3f#gi(%0qd-(3gb$q%h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/mv_template/') 
+
+UPDATE_LOG = os.path.join(BASE_DIR, 'log/subtitle_play.log')
+
 
 
 # Application definition
@@ -37,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'MV',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'subtitle_play.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +83,7 @@ WSGI_APPLICATION = 'subtitle_play.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'DB/MB.db'),
     }
 }
 
@@ -100,3 +106,50 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {                                              
+        'standard': {                                        
+            'datefmt':'%Y-%m-%d %H:%M:%S',           
+            'format':' %(asctime)s %(message)s',     
+       },                                            
+    },               
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'audit_handlers': {                            
+            'level':'DEBUG',                         
+            'class':'logging.handlers.RotatingFileHandler',
+            'formatter':'standard',                  
+            'filename':UPDATE_LOG,
+            'maxBytes':5 * 1024 * 1024,
+            'backupCount':5,
+            },                                                                                                      
+   },
+
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'audit':{                                     
+             'handlers': ['audit_handlers'],           
+             'level': 'DEBUG',                          
+             'propagate': False,                     
+         },                                                       
+    }
+}
+
