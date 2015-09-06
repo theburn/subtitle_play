@@ -7,7 +7,7 @@ from django.http import HttpResponse,  HttpResponseRedirect
 from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response, redirect
-from django.utils import simplejson
+import json
 from django.contrib.auth.decorators import login_required
 import time
 
@@ -67,7 +67,7 @@ def auth_login(request):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    res_login_json = simplejson.dumps(res_login)
+    res_login_json = json.dumps(res_login)
     return HttpResponse(res_login_json,  mimetype = 'application/json')
 
 
