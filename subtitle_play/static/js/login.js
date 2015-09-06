@@ -4,7 +4,7 @@ $(document).ready(function() {
                 {
                     username:$("#username").val(),
                     password:$("#password").val(),
-                    csrfmiddlewaretoken:getCookie('csrftoken'),
+                    csrfmiddlewaretoken:getCookie('csrftoken')
                 },
                 function(data){
                     if (data.res_login == "0"){
