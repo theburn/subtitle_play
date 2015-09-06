@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/mv_template/') 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/mv_templates/') 
 
 UPDATE_LOG = os.path.join(BASE_DIR, 'log/subtitle_play.log')
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'subtitle_play.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'DB/MB.db'),
+        'NAME': os.path.join(BASE_DIR, 'DB/MV.db'),
     }
 }
 
