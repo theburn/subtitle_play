@@ -54,16 +54,12 @@
         .form({
           fields: {
             email: {
-              identifier  : 'email',
+              identifier  : 'user',
               rules: [
                 {
                   type   : 'empty',
-                  prompt : 'Please enter your e-mail'
+                  prompt : '请输入用户名'
                 },
-                {
-                  type   : 'email',
-                  prompt : 'Please enter a valid e-mail'
-                }
               ]
             },
             password: {
@@ -71,12 +67,8 @@
               rules: [
                 {
                   type   : 'empty',
-                  prompt : 'Please enter your password'
+                  prompt : '请输入密码'
                 },
-                {
-                  type   : 'length[6]',
-                  prompt : 'Your password must be at least 6 characters'
-                }
               ]
             }
           }
@@ -91,7 +83,6 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="/static/image/logo.png" class="image">
       <div class="content">
         为爱欢呼第五季--赣州站
       </div>
@@ -101,7 +92,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="用户名">
+            <input type="text" name="user" placeholder="用户名">
           </div>
         </div>
         <div class="field">
