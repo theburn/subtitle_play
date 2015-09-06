@@ -15,7 +15,7 @@ urlpatterns = patterns('',
 
 
 
-urlpatterns += patterns('patch_site.views',
+urlpatterns += patterns('subtitle_play.views',
     url(r'^auth_login/$',  'auth_login'), 
     url(r'^auth_logout/$',  'auth_logout'), 
     #upload
