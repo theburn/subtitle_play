@@ -3,7 +3,7 @@
 from django.contrib.auth import *
 from django.contrib.auth.models  import User,  Group
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse,  HttpResponseRedirect
+from django.http import JsonResponse,  HttpResponseRedirect
 from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response, redirect
@@ -68,7 +68,7 @@ def auth_login(request):
             log_event,  log_msg[res_key]) 
 
     res_login_json = json.dumps(res_login)
-    return HttpResponse(res_login_json,  mimetype = 'application/json')
+    return JsonResponse(res_login_json)
 
 
 
