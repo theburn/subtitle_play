@@ -67,8 +67,7 @@ def auth_login(request):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    res_login_json = json.dumps(res_login)
-    return JsonResponse(res_login_json)
+    return JsonResponse(res_login)
 
 
 
