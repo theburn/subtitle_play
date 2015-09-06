@@ -28,6 +28,7 @@
   <link rel="stylesheet" type="text/css" href="/static/js/components/icon.css">
 
   <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/login.js"></script>
   <script src="/static/js/jquery-ui-1.10.1.custom.min.js"></script>
   <script src="/static/js/semantic.min.js"></script>
   <script src="/static/js/components/form.js"></script>
@@ -92,16 +93,16 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="user" placeholder="用户名">
+            <input id="username" type="text" name="user" placeholder="用户名">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="密码">
+            <input id="password" type="password" name="password" placeholder="密码">
           </div>
         </div>
-        <div class="ui fluid large blue submit button">Login</div>
+        <div id="login" class="ui fluid large blue submit button">Login</div>
       </div>
 
       <div class="ui error message"></div>

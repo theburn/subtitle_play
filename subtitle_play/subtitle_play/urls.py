@@ -20,6 +20,7 @@ urlpatterns += patterns('patch_site.views',
     url(r'^auth_logout/$',  'auth_logout'), 
     #upload
     url(r'^upload_file/(?P<target>(mv|subtitle))/$',  'upload_file'), 
+    url(r'^dispatch/$',  'dispatch'), 
 )
 
 
