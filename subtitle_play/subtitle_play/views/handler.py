@@ -21,6 +21,12 @@ def __log_test(msg):
     log.debug("SYSTEM SYSTEM LOG_TEST %s", msg)
 
 
+def config(request):
+    return render_to_response("config.html")
+
+def show(request):
+    return render_to_response("show.html")
+
 def dispatch(request):
     return render_to_response("dispatch.html")
 

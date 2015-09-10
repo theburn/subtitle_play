@@ -21,6 +21,8 @@ urlpatterns += patterns('subtitle_play.views',
     #upload
     url(r'^upload_file/(?P<target>(mv|subtitle))/$',  'upload_file'), 
     url(r'^dispatch/$',  'dispatch'), 
+    url(r'^config/$',  'config'), 
+    url(r'^show/$',  'show'), 
 )
 
 
