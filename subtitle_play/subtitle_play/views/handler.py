@@ -24,6 +24,9 @@ def __log_test(msg):
 def config(request):
     return render_to_response("config.html")
 
+def controller(request):
+    return render_to_response("config.html")
+
 def show(request):
     return render_to_response("show.html")
 
