@@ -44,6 +44,7 @@
     <div class="ui ignored info message">
         请先配置<code>MV上传</code>和<code>字幕上传</code>，然后再在歌曲配置中选中各个属性
     </div>
+
     <div class="ui top attached tabular menu">
         <a class="item active" data-tab="first">歌曲配置</a>
         <a class="item" data-tab="second">MV上传</a>
@@ -55,19 +56,17 @@
     <div class="ui bottom attached tab segment" data-tab="second">
 		<form method="post" action="/upload_file/mv/" enctype="multipart/form-data">
 			{% csrf_token %}
-			<label>文  件：</label><input type="file" name="uploadfile" />
-			<input type="submit" value="提交" />
+			<label>文 件：</label><input type="file" name="uploadfile" />
+			<input type="submit" value="提交"/>
             <!--
             <div class="ui large basic icon buttons">
                 <button class="ui button" type="file" name="uploadfile"><i class="upload icon"></i>上传</button>
             </div>
             -->
 		</form>
-
     </div>
 
     <div class="ui bottom attached tab segment" data-tab="third">Third </div>
 
 </body>
-
 </html>
