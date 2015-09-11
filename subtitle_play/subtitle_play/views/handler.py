@@ -117,3 +117,33 @@ def upload_file(request, target):
 
     return HttpResponseRedirect("/config/")
 
+
+
+
+
+@login_required
+def get_mv_template(request):
+    res_mv = {"result":None, "mv_list":[]}
+    if request.is_ajax() and request.method == "GET":
+        try:
+            mv_all = MV_Template.objects.all()
+            for mv in mv_all:
+                res_mv["mv_list"].append(mv.mv_name)
+
+            res_mv["result"] = 0
+        except:
+            res_mv["result"] = 1
+    else:
+        res_mv["result"] = 2
+
+    return JsonResponse(res_mv)
+
+
+
+
+
+
+
+
+
+

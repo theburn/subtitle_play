@@ -24,6 +24,7 @@ urlpatterns += patterns('subtitle_play.views',
     url(r'^config/$',  'config'), 
     url(r'^controllor/$',  'controllor'), 
     url(r'^show/$',  'show'), 
+    url(r'^get_mv_template/$',  'get_mv_template'), 
 )
 
 
