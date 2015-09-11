@@ -99,7 +99,8 @@ def upload_file(request, target):
         except IOError:
             res_upload["result"] = 2
         except Exception as e:
-            res_upload["result"] = e
+            __log_test(e)
+            res_upload["result"] = 3
     else:
         res_upload["result"] = 4
 
