@@ -10,8 +10,16 @@ $(document).ready(function() {
                 if (result == 0) {
                     mv_template = data.mv_list;
                 }
-                alert(mv_template.length);
-                alert(mv_template);
+                if (mv_template != "Empty") {
+                    for(var i = 0; i < mv_template.length; i++) {
+                        var content = "<li>" + mv_template[i] + </li>
+                        $("#mv_list_template > ul").append(content)
+
+                    }
+                } else {
+                    $("#mv_list_template > ul").html(mv_template)
+                }
+
         },"json")
 
     });
