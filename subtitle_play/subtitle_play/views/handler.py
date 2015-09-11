@@ -9,6 +9,8 @@ from django.template import Context
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from subtitle_play import settings
+from django.template import RequestContext
+
 import json
 import time
 import xml.sax.saxutils
@@ -26,7 +28,7 @@ def __log_test(msg):
 
 @login_required
 def config(request):
-    return HttpResponseRedirect("config.html")
+    return render_to_response("controllor.html", context_instance=RequestContext(request))
 
 @login_required
 def controllor(request):
