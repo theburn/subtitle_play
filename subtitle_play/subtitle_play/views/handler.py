@@ -12,6 +12,7 @@ from subtitle_play import settings
 from django.template import RequestContext
 
 import json
+import os
 import time
 import xml.sax.saxutils
 import logging
