@@ -55,8 +55,13 @@
     <div class="ui bottom attached tab segment" data-tab="second">
 		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}
+            <!--
 			<label>文  件：</label><input type="file" name="uploadfile" />
 			<input type="submit" value="提交" />
+            -->
+            <div class="ui large basic icon buttons">
+                <button class="ui button"><i class="upload icon"></i></button>
+            </div>
 		</form>
 
     </div>
