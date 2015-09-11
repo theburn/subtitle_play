@@ -10,6 +10,9 @@ $(document).ready(function() {
                 if (result == 0) {
                     mv_template = data.mv_list;
                 }
+                //clean html content first
+                $("#mv_list_template > ul").append(content)
+                //for get mv list
                 if (mv_template != "Empty") {
                     for(var i = 0; i < mv_template.length; i++) {
                         var content = "<li>" + mv_template[i] + "</li>"
