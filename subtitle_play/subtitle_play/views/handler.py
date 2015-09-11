@@ -26,7 +26,7 @@ def __log_test(msg):
 
 @login_required
 def config(request):
-    return render_to_response("config.html")
+    return HttpResponseRedirect("config.html")
 
 @login_required
 def controllor(request):
