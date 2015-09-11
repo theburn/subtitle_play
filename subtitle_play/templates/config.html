@@ -49,8 +49,18 @@
         <a class="item" data-tab="second">MV上传</a>
         <a class="item" data-tab="third">字幕上传</a>
     </div>
+
     <div class="ui bottom attached tab segment active" data-tab="first">First </div>
-    <div class="ui bottom attached tab segment" data-tab="second">Second </div>
+
+    <div class="ui bottom attached tab segment" data-tab="second">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<label>文  件：</label><input type="file" name="uploadfile" />
+			<input type="submit" value="提交" />
+		</form>
+
+    </div>
+
     <div class="ui bottom attached tab segment" data-tab="third">Third </div>
 
 </body>
