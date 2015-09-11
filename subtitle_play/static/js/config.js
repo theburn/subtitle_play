@@ -10,7 +10,8 @@ $(document).ready(function() {
                 if (result == 0) {
                     mv_template = data.mv_list;
                 }
-                $("#mv_list_template").html(mv_template)
+                alert(mv_template.length);
+                alert(mv_template);
         },"json")
 
     });
