@@ -29,3 +29,7 @@ class Music(models.Model):
     music_mv = models.ForeignKey(MV_Template)
     music_subtitle = models.ForeignKey(Subtitle_Template)
 
+    def __unicode__(self):
+        return u'%s' \
+                % (self.music_name)
+
