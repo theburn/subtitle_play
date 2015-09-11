@@ -61,6 +61,7 @@ def upload_file(request, target):
             }
     name = "None"
     target_flag = True
+    global UPLOAD_PATH
     if request.method=='POST':
         try:
             if target == "mv":
