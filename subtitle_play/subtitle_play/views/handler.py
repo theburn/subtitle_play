@@ -21,17 +21,15 @@ def __log_test(msg):
 
 
 def config(request):
-    return render_to_response("config.html", \
-                                {"IP" : get_ip_address("eth0")})
+    return render_to_response("config.html")
 
 def controller(request):
-    return render_to_response("controller.html", \
-                                {"IP" : get_ip_address("eth0")})
+    return render_to_response("controller.html")
 
 def show(request):
-    return render_to_response("show.html", \
-                                {"IP" : get_ip_address("eth0")})
+    return render_to_response("show.html")
 
 def dispatch(request):
-    return render_to_response("dispatch.html")
+    return render_to_response("dispatch.html", \
+                                {"IP" : get_ip_address("eth0")})
 
