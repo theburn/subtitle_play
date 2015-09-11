@@ -112,6 +112,5 @@ def upload_file(request, target):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    return render_to_response("config.html", context_instance=RequestContext(request))
-
+    return HttpResponseRedirect("/config/")
 
