@@ -12,7 +12,7 @@ $(document).ready(function() {
                 }
                 if (mv_template != "Empty") {
                     for(var i = 0; i < mv_template.length; i++) {
-                        var content = "<li>" + mv_template[i] + </li>
+                        var content = "<li>" + mv_template[i] + "</li>"
                         $("#mv_list_template > ul").append(content)
 
                     }
