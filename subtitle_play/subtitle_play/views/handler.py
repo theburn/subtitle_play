@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from subtitle_play import settings
 from django.template import RequestContext
-from subtitle_play.MV.models import *
+from MV.models import *
 
 import json
 import os
