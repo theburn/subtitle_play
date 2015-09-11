@@ -10,6 +10,7 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from subtitle_play import settings
 from django.template import RequestContext
+from subtitle_play.MV.models import *
 
 import json
 import os
@@ -89,8 +90,11 @@ def upload_file(request, target):
                     with open(filename, 'wb+') as tempfile:
                         for chunk in f.chunks():
                             tempfile.write(chunk)
-                    
-                    #TODO
+
+                    mv = MV_Template()
+                    mv.mv_name = name
+                    mv.mv_file_location = filename
+                    mv.save()
 
                     res_upload["result"] = 0
             else:
