@@ -24,21 +24,27 @@ def __log_test(msg):
     log.debug("SYSTEM SYSTEM LOG_TEST %s", msg)
 
 
+@login_required
 def config(request):
     return render_to_response("config.html")
 
+@login_required
 def controllor(request):
     return render_to_response("controllor.html")
 
+@login_required
 def show(request):
     return render_to_response("show.html")
 
+@login_required
 def dispatch(request):
     return render_to_response("dispatch.html", \
                                 {"IP" : get_ip_address("eth0")})
 
 
 
+@login_required
+@csrf_protect
 def upload_file(request, target):
     res_upload = {"result": None}
     log_msg = {\
