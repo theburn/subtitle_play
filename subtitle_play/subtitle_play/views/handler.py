@@ -100,6 +100,7 @@ def upload_file(request, target):
             res_upload["result"] = 2
         except Exception as e:
             __log_test(e)
+            assert False
             res_upload["result"] = 3
     else:
         res_upload["result"] = 4
