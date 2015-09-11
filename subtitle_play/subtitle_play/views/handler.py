@@ -13,8 +13,7 @@ import time
 
 import logging
 
-
-
+from common_function import get_ip_address
 
 def __log_test(msg):
     log = logging.getLogger("audit")
@@ -22,13 +21,16 @@ def __log_test(msg):
 
 
 def config(request):
-    return render_to_response("config.html")
+    return render_to_response("config.html", \
+                                {"IP" : get_ip_address("eth0")})
 
 def controller(request):
-    return render_to_response("controller.html")
+    return render_to_response("controller.html", \
+                                {"IP" : get_ip_address("eth0")})
 
 def show(request):
-    return render_to_response("show.html")
+    return render_to_response("show.html", \
+                                {"IP" : get_ip_address("eth0")})
 
 def dispatch(request):
     return render_to_response("dispatch.html")
