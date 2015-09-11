@@ -28,7 +28,7 @@ def __log_test(msg):
 
 @login_required
 def config(request):
-    return render_to_response("controllor.html", context_instance=RequestContext(request))
+    return render_to_response("config.html", context_instance=RequestContext(request))
 
 @login_required
 def controllor(request):
