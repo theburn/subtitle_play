@@ -18,7 +18,7 @@ import xml.sax.saxutils
 import logging
 
 MAX_SIZE = 1024 * 1024 * 1024 * 2   # 2G
-UPLOAD_PATH = settings.MEDIA_ROOT
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 from common_function import get_ip_address
 
@@ -61,13 +61,12 @@ def upload_file(request, target):
             }
     name = "None"
     target_flag = True
-    global UPLOAD_PATH
     if request.method=='POST':
         try:
             if target == "mv":
-                UPLOAD_PATH = os.path.join([UPLOAD_PATH, "mv_templates"])
+                UPLOAD_PATH = os.path.join(MEDIA_ROOT, "mv_templates")
             elif target == "subtitle":
-                UPLOAD_PATH = os.path.join([UPLOAD_PATH, "subtitle_templates"])
+                UPLOAD_PATH = os.path.join(MEDIA_ROOT, "subtitle_templates")
             else:
                 target_flag = False
 
