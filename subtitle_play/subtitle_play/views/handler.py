@@ -116,10 +116,9 @@ def upload_file(request, target):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    result = []
-    result.append({"name":name,
+    result = {"name":name,
                    "size":f.size,
-                   })
+                   }
     
     return JsonResponse(result)
 
