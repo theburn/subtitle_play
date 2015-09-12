@@ -74,7 +74,8 @@ def upload_file(request, target):
 
 
             if target_flag:
-                f = request.FILES.get('files[]')
+                uploadfile = request.FILES.get('files[]')
+                f = UploadedFile(uploadfile)
                 name = xml.sax.saxutils.escape(f.name).strip().replace(" ", "_").encode("utf-8")
 
                 if not os.path.exists(UPLOAD_PATH):
@@ -85,16 +86,12 @@ def upload_file(request, target):
                 if os.path.exists(filename):
                     os.remove(filename) # 先删除老的文件
 
-                if f.size > MAX_SIZE:
+                if f.file.size > MAX_SIZE:
                     res_upload["result"] = 5
                 else:
-                    with open(filename, 'wb+') as tempfile:
-                        for chunk in f.chunks():
-                            tempfile.write(chunk)
-
                     mv = MV_Template()
                     mv.mv_name = name
-                    mv.mv_file_location = filename
+                    mv.mv_file_location = f
                     mv.save()
 
                     res_upload["result"] = 0
