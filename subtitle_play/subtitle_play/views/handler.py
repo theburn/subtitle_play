@@ -123,7 +123,7 @@ def upload_file(request, target):
 
 @login_required
 def get_mv_template(request):
-    res_mv = {"result":None, "mv_list":[]}
+    res_mv = {"result":None, "mv_list":"Empty"}
     if request.is_ajax() and request.method == "GET":
         try:
             mv_all = MV_Template.objects.all()
