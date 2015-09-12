@@ -54,6 +54,40 @@ $(document).ready(function() {
 
     });
 
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        formData: [
+            { name: "csrfmiddlewaretoken", value:getCookie('csrftoken')}
+        ],
+
+
+
+        add: function (e, data) {
+            data.context = $('<button/>').text('上传')
+                .appendTo($("#upload_op"))
+                .click(function () {
+                    data.context = $('#mv_upload_result').text('上传中...').replaceAll($(this));
+                    data.submit();
+                });
+        },
+
+
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                $('#mv_upload_result').text(file.name + "上传成功!")
+            });
+        }
+
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+
+
+    });
 
 
 

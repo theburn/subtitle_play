@@ -33,9 +33,18 @@
 
   <script src="/static/js/jquery-ui-1.10.1.custom.min.js"></script>
   <script src="/static/js/semantic.min.js"></script>
+  <script src="/static/js/vendor/jquery.ui.widget.js"></script>
+  <script src="/static/js/jquery.iframe-transport.js"></script>
+  <script src="/static/js/jquery.fileupload.js"></script>
   <script src="/static/js/login.js"></script>
   <script src="/static/js/components/tab.min.js"></script>
   <script src="/static/js/config.js"></script>
+  <style type="text/css">
+    .bar {
+        height: 18px;
+        background: #d95c5c;;
+     }
+  </style>
 
   
 </head>
@@ -53,15 +62,22 @@
     <div class="ui bottom attached tab segment active" data-tab="first">First </div>
 
     <div class="ui bottom attached tab segment" data-tab="second">
+        <!--
         <form action="/upload_file/mv/" enctype="multipart/form-data" method="post">{% csrf_token %}
 			<label>文 件：</label><input type="file" name="uploadfile" />
 			<input type="submit" value="提交"/>
-            <!--
-            <div class="ui large basic icon buttons">
-                <button class="ui button" type="file" name="uploadfile"><i class="upload icon"></i>上传</button>
-            </div>
-            -->
         </form>
+        -->
+        <div id="upload_op">
+            <input id="fileupload" type="file" name="filename" data-url="/upload_file/mv/">
+        </div>
+
+        <div id="progress">
+            <div class="bar" style="width: 0%;"></div>
+        </div>
+
+        <div id="mv_upload_result"></p>
+
         <div class="ui raised segment" id="mv_list_template">
             <h4 class="ui left floated header"><i class="tag icon"></i>系统中已存在的MV</h4>
             <div class="ui clearing divider"></div>
