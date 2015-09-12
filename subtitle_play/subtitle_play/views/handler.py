@@ -139,6 +139,25 @@ def get_mv_template(request):
     return JsonResponse(res_mv)
 
 
+@login_required
+def get_subtitle_template(request):
+    res_subtitle = {"result":None, "subtitle_list":"Empty"}
+    if request.is_ajax() and request.method == "GET":
+        try:
+            subtitle_all = Subtitle_Template.objects.all()
+            for subtitle in subtitle_all:
+                res_subtitle["subtitle_list"].append(subtitle.subtitle_name)
+
+            res_subtitle["result"] = 0
+        except:
+            res_subtitle["result"] = 1
+    else:
+        res_subtitle["result"] = 2
+
+    return JsonResponse(res_subtitle)
+
+
+
 
 
 
