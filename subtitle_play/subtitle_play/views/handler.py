@@ -73,7 +73,7 @@ def upload_file(request, target):
 
 
             if target_flag:
-                f = request.FILES.get('file[]')
+                f = request.FILES.get('files')
                 name = xml.sax.saxutils.escape(f.name).strip().replace(" ", "_").encode("utf-8")
 
                 if not os.path.exists(UPLOAD_PATH):
