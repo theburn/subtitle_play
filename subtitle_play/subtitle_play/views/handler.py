@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from subtitle_play import settings
 from django.template import RequestContext
 from subtitle_play.music.models import *
+from django.core.files.uploadedfile import UploadedFile
 
 import json
 import os
@@ -73,7 +74,7 @@ def upload_file(request, target):
 
 
             if target_flag:
-                f = request.FILES.get('files')
+                f = request.FILES.get('files[]')
                 name = xml.sax.saxutils.escape(f.name).strip().replace(" ", "_").encode("utf-8")
 
                 if not os.path.exists(UPLOAD_PATH):
@@ -115,7 +116,16 @@ def upload_file(request, target):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    return HttpResponseRedirect("/config/")
+    result = []
+    result.append({"name":name,
+                   "size":f.size,
+                   })
+    
+    return JsonResponse(result)
+
+
+
+
 
 
 
