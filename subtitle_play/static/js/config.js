@@ -61,7 +61,6 @@ $(document).ready(function() {
         ],
 
 
-
         add: function (e, data) {
             data.context = $('<button/>').text('上传')
                 .appendTo($("#upload_op"))
@@ -76,7 +75,7 @@ $(document).ready(function() {
             $.each(data.result.files, function (index, file) {
                 $('#mv_upload_result').text(file.name + "上传成功!")
             });
-        }
+        },
 
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -84,7 +83,7 @@ $(document).ready(function() {
                 'width',
                 progress + '%'
             );
-        }
+        },
 
 
     });
