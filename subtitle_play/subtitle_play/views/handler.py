@@ -106,7 +106,7 @@ def upload_file(request, target):
         res_upload["result"] = 4
 
 
-    log_event = u"upload" + name
+    log_event = u"上传" + name.encode("utf-8").decode("utf-8")
     res_key = str(res_upload['result'])
     log = logging.getLogger("audit")
     log.debug("%s %s %s %s",  \
