@@ -113,7 +113,7 @@ $(document).ready(function() {
         add: function (e, data) {
             $("#subtitle_upload_op").children("button").remove();
             $("#subtitle_upload_result").hide();
-            $("#progress").hide();
+            $("#subtitle_progress").hide();
 
             //alert($("#subtitle_fileupload").val());
             data.context = $('<button/>').text('上传').addClass("ui blue button")
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     //data.context = $('#subtitle_upload_result').text('上传中...').addClass("ui positive message").replaceAll($(this));
                     $('#subtitle_upload_result').text('上传中...').addClass("ui positive message");
                     $("#subtitle_upload_result").show();
-                    $("#progress").show();
+                    $("#subtitle_progress").show();
                     data.submit();
                     $("#subtitle_upload_op").children("button").remove();
                 });
@@ -130,7 +130,7 @@ $(document).ready(function() {
 
 
         done: function (e, data) {
-            $("#progress").addClass("ui progress success")
+            $("#subtitle_progress").addClass("ui progress success")
             $.each(data.result, function (index, file) {
                 $('#subtitle_upload_result').text(file.name + "  :  上传成功!")
             });
@@ -139,11 +139,11 @@ $(document).ready(function() {
 
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .bar').css(
+            $('#subtitle_progress .bar').css(
                 'width',
                 progress + '%'
             );
-            $("#progress").find(".progress").text(progress + '%')
+            $("#subtitle_progress").find(".progress").text(progress + '%')
         },
 
 
