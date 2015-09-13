@@ -92,10 +92,16 @@ def upload_file(request, target):
                 if f.file.size > MAX_SIZE:
                     res_upload["result"] = 5
                 else:
-                    mv = MV_Template()
-                    mv.mv_name = name
-                    mv.mv_file_location = f
-                    mv.save()
+                    if target == "mv":
+                        mv = MV_Template()
+                        mv.mv_name = name
+                        mv.mv_file_location = f
+                        mv.save()
+                    elif target == "subtitle":
+                        subtitle = Subtitle_Template()
+                        subtitle.subtitle_name = name
+                        subtitle.subtitle_file_location = f
+                        subtitle.save()
 
                     res_upload["result"] = 0
             else:
