@@ -75,7 +75,7 @@ $(document).ready(function() {
 
 
         done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
+            $.each(data.result, function (index, file) {
                 $('#mv_upload_result').text(file.name + "上传成功!")
             });
         },

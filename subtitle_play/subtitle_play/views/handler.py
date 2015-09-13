@@ -3,7 +3,7 @@
 from django.contrib.auth import *
 from django.contrib.auth.models  import User,  Group
 from django.views.decorators.csrf import csrf_protect
-from django.http import JsonResponse,  HttpResponseRedirect
+from django.http import JsonResponse,  HttpResponseRedirect, HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response, redirect
@@ -113,11 +113,12 @@ def upload_file(request, target):
             request.session['ip'],  request.session['user_name'],  \
             log_event,  log_msg[res_key]) 
 
-    result = {"name":name,
+    result = []
+    result.append({"name":name,
                    "size":f.size,
-                   }
+                   })
     
-    return JsonResponse(result)
+    return HttpResponse(json.dumps(result), content_type="application/json")
 
 
 
