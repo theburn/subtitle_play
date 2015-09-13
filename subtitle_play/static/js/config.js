@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('.menu .item').tab();
+    $('.ui.dropdown').dropdown();
 
     $("#mv_upload").on("click",function(){
         $.get("/get_mv_template/",
