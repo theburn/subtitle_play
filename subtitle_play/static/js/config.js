@@ -63,7 +63,7 @@ $(document).ready(function() {
 
         add: function (e, data) {
             $("#upload_op").children("button").remove();
-            data.context = $('<button/>').text('上传')
+            data.context = $('<button/>').text('上传').addClass("ui blue button")
                 .appendTo($("#upload_op"))
                 .click(function () {
                     data.context = $('#mv_upload_result').text('上传中...').replaceAll($(this));
