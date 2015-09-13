@@ -137,8 +137,8 @@ def get_mv_template(request):
                 res_mv["mv_list"].append(mv.mv_name)
 
             res_mv["result"] = 0
-        except:
-            res_mv["result"] = 1
+        except Exception as e:
+            res_mv["result"] = e
     else:
         res_mv["result"] = 2
 
