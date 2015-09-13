@@ -64,11 +64,8 @@ $(document).ready(function() {
 
         add: function (e, data) {
             $("#upload_op").children("button").remove();
-            $('#progress .bar').css(
-                'width','0%'
-            );
-            $("mv_upload_result").empty();
-
+            $("#mv_upload_result").hide();
+            $("#progress").hide();
 
             //alert($("#mv_fileupload").val());
             data.context = $('<button/>').text('上传').addClass("ui blue button")
