@@ -75,6 +75,7 @@ $(document).ready(function() {
 
 
         done: function (e, data) {
+            $("#progress").Class("ui progress success")
             $.each(data.result, function (index, file) {
                 $('#mv_upload_result').text(file.name + "上传成功!")
             });
@@ -86,6 +87,7 @@ $(document).ready(function() {
                 'width',
                 progress / 3 + '%'
             );
+            $("#progess").children(".progress").val(progress + %)
         },
 
 
