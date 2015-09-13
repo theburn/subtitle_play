@@ -73,6 +73,8 @@ $(document).ready(function() {
                 .click(function () {
                     //data.context = $('#mv_upload_result').text('上传中...').addClass("ui positive message").replaceAll($(this));
                     $('#mv_upload_result').text('上传中...').addClass("ui positive message");
+                    $("#mv_upload_result").show();
+                    $("#progress").show();
                     data.submit();
                     $("#upload_op").children("button").remove();
                 });
