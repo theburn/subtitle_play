@@ -95,7 +95,7 @@ def upload_file(request, target):
                     else:
                         if target == "mv":
                             for mv_instance in MV_Template.objects.all():
-                                if name == mv_instance.name():
+                                if name == mv_instance.mv_name:
                                     exists_flag = True
                                     break
 
@@ -106,7 +106,7 @@ def upload_file(request, target):
                                 mv.save()
                         elif target == "subtitle":
                             for subtitle_instance in Subtitle_Template.objects.all():
-                                if name == subtitle_instance.name:
+                                if name == subtitle_instance.subtitle_name:
                                     exists_flag = True
                                     break
 
