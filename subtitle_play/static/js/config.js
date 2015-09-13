@@ -87,7 +87,7 @@ $(document).ready(function() {
                 'width',
                 progress / 3 + '%'
             );
-            $("#progess").children(".progress").val(progress + %)
+            $("#progess").children(".progress").val(progress + '%')
         },
 
 
