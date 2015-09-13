@@ -164,6 +164,29 @@ $(document).ready(function() {
 
 
 
+    $("#music_config").on("click",function(){
+         $.get("/get_mv_template/",
+            function(data){
+                var result = data.result;
+                var mv_template= "Empty";
+                if (result == 0) {
+                    mv_template = data.mv_list;
+                }
+                //clean html content first
+                
+             if (mv_template != "Empty") {
+                for(var i = 0; i < mv_template.length; i++) {
+                    var content = '<div class="item" data-value="' + (i + 1)  + '">' + mv_template[i] + '</div>';
+                    $("#mv_select_list").append(content);
+                }
+
+             }
+            
+           },"json")
+
+    });
+
+
 
 
 });
