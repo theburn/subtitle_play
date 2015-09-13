@@ -56,6 +56,7 @@ $(document).ready(function() {
 
     $('#mv_fileupload').fileupload({
         dataType: 'json',
+        replaceFileInput:false,
         formData: [
             { name: "csrfmiddlewaretoken", value:get_cookie('csrftoken')}
         ],
