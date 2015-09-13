@@ -85,9 +85,9 @@ $(document).ready(function() {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('#progress .bar').css(
                 'width',
-                progress / 3 + '%'
+                progress + '%'
             );
-            $("#progess").children(".progress").html(progress + '%')
+            $("#progress").children(".progress").html(progress + '%')
         },
 
 
