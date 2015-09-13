@@ -68,7 +68,7 @@ $(document).ready(function() {
             data.context = $('<button/>').text('上传').addClass("ui blue button")
                 .appendTo($("#upload_op"))
                 .click(function () {
-                    data.context = $('#mv_upload_result').text('上传中...').addClass("ui positive message").replaceAll($(this));
+                    data.context = $('#mv_upload_result').text('上传中...').css('max-width',"33.3%")addClass("ui positive message")..replaceAll($(this));
                     data.submit();
                 });
         },
