@@ -77,8 +77,9 @@ $(document).ready(function() {
         done: function (e, data) {
             $("#progress").addClass("ui progress success")
             $.each(data.result, function (index, file) {
-                $('#mv_upload_result').text(file.name + ":上传成功!")
+                $('#mv_upload_result').text(file.name + "  :  上传成功!")
             });
+            $("#mv_upload").click();
         },
 
         progressall: function (e, data) {
