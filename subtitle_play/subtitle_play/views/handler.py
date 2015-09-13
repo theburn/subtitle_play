@@ -88,38 +88,38 @@ def upload_file(request, target):
                 filename = os.path.join(UPLOAD_PATH, name)
 
                 if os.path.exists(filename):
-                    os.remove(filename) # 先删除老的文件
-
-                if f.file.size > MAX_SIZE:
-                    res_upload["result"] = 5
+                    exists_flag = True
                 else:
-                    if target == "mv":
-                        for mv_instance in MV_Template.objects.all():
-                            if name == mv_instance.name():
-                                exists_flag = True
-                                break
-
-                        if not exists_flag:
-                            mv = MV_Template()
-                            mv.mv_name = name
-                            mv.mv_file_location = f
-                            mv.save()
-                    elif target == "subtitle":
-                        for subtitle_instance in Subtitle_Template.objects.all():
-                            if name == subtitle_instance.name:
-                                exists_flag = True
-                                break
-
-                        if not exists_flag:
-                            subtitle = Subtitle_Template()
-                            subtitle.subtitle_name = name
-                            subtitle.subtitle_file_location = f
-                            subtitle.save()
-
-                    if exists_flag:
-                        res_upload["result"] = 10
+                    if f.file.size > MAX_SIZE:
+                        res_upload["result"] = 5
                     else:
-                        res_upload["result"] = 0
+                        if target == "mv":
+                            for mv_instance in MV_Template.objects.all():
+                                if name == mv_instance.name():
+                                    exists_flag = True
+                                    break
+
+                            if not exists_flag:
+                                mv = MV_Template()
+                                mv.mv_name = name
+                                mv.mv_file_location = f
+                                mv.save()
+                        elif target == "subtitle":
+                            for subtitle_instance in Subtitle_Template.objects.all():
+                                if name == subtitle_instance.name:
+                                    exists_flag = True
+                                    break
+
+                            if not exists_flag:
+                                subtitle = Subtitle_Template()
+                                subtitle.subtitle_name = name
+                                subtitle.subtitle_file_location = f
+                                subtitle.save()
+
+                        if exists_flag:
+                            res_upload["result"] = 10
+                        else:
+                            res_upload["result"] = 0
             else:
                 res_upload["result"] = 3
         except IOError:
