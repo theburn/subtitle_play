@@ -54,7 +54,7 @@ $(document).ready(function() {
 
     });
 
-    $('#fileupload').fileupload({
+    $('#mv_fileupload').fileupload({
         dataType: 'json',
         formData: [
             { name: "csrfmiddlewaretoken", value:get_cookie('csrftoken')}
@@ -62,6 +62,7 @@ $(document).ready(function() {
 
 
         add: function (e, data) {
+            $("#upload_op").children("button").remove();
             data.context = $('<button/>').text('上传')
                 .appendTo($("#upload_op"))
                 .click(function () {
