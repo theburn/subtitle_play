@@ -129,36 +129,46 @@ def upload_file(request, target):
 
 @login_required
 def get_mv_template(request):
-    res_mv = {"result":None, "mv_list":"Empty"}
+    res_mv = {"result":None, "mv_list":[]}
     if request.is_ajax() and request.method == "GET":
         try:
             mv_all = MV_Template.objects.all()
             for mv in mv_all:
                 res_mv["mv_list"].append(mv.mv_name)
 
+            if len(res_mv["mv_list"]) == 0:
+                res_mv["mv_list"] = "Empty"
+            
             res_mv["result"] = 0
-        except Exception as e:
-            res_mv["result"] = e
+        except:
+            res_mv["result"] = 1
+            res_mv["mv_list"] = "ERROR_1"
     else:
         res_mv["result"] = 2
+        res_mv["mv_list"] = "ERROR_2"
 
     return JsonResponse(res_mv)
 
 
 @login_required
 def get_subtitle_template(request):
-    res_subtitle = {"result":None, "subtitle_list":"Empty"}
+    res_subtitle = {"result":None, "subtitle_list":[]}
     if request.is_ajax() and request.method == "GET":
         try:
             subtitle_all = Subtitle_Template.objects.all()
             for subtitle in subtitle_all:
                 res_subtitle["subtitle_list"].append(subtitle.subtitle_name)
 
+            if len(res_subtitle["subtitle_list"]) == 0:
+                res_subtitle["subtitle_list"] = "Empty"
+
             res_subtitle["result"] = 0
         except:
+            res_subtitle["subtitle_list"] = "ERROR_1"
             res_subtitle["result"] = 1
     else:
         res_subtitle["result"] = 2
+        res_subtitle["subtitle_list"] = "ERROR_2"
 
     return JsonResponse(res_subtitle)
 
