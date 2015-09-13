@@ -64,7 +64,7 @@ $(document).ready(function() {
 
         add: function (e, data) {
             $("#upload_op").children("button").remove();
-            alert($("#mv_fileupload").name);
+            alert($("#mv_fileupload").val());
             data.context = $('<button/>').text('上传').addClass("ui blue button")
                 .appendTo($("#upload_op"))
                 .click(function () {
