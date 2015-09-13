@@ -82,12 +82,17 @@ $(document).ready(function() {
 
 
         done: function (e, data) {
-            alert(data.result[0].exists);
-            $("#progress").addClass("ui progress success")
-            $.each(data.result, function (index, file) {
-                $('#mv_upload_result').text(file.name + "  :  上传成功!")
-            });
-            $("#mv_upload").click();
+            if (data.result[0].exists) {
+                $("#mv_upload_result").hide();
+                $("#progress").hide();
+                alert("文件已经存在!");
+            }else {
+                $("#progress").addClass("ui progress success")
+                $.each(data.result, function (index, file) {
+                    $('#mv_upload_result').text(file.name + "  :  上传成功!")
+                });
+                $("#mv_upload").click();
+            }
         },
 
         progressall: function (e, data) {
@@ -131,11 +136,17 @@ $(document).ready(function() {
 
 
         done: function (e, data) {
-            $("#subtitle_progress").addClass("ui progress success")
-            $.each(data.result, function (index, file) {
-                $('#subtitle_upload_result').text(file.name + "  :  上传成功!")
-            });
-            $("#subtitle_upload").click();
+            if (data.result[0].exists) {
+                $("#subtitle_upload_result").hide();
+                $("#subtitle_progress").hide();
+                alert("文件已经存在!");
+            } else {
+                $("#subtitle_progress").addClass("ui progress success")
+                $.each(data.result, function (index, file) {
+                    $('#subtitle_upload_result').text(file.name + "  :  上传成功!")
+                });
+                $("#subtitle_upload").click();
+            }
         },
 
         progressall: function (e, data) {
