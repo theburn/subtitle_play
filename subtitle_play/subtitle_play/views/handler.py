@@ -66,6 +66,7 @@ def upload_file(request, target):
             }
     name = "None"
     target_flag = True
+    exists_flag = False
     if request.method=='POST':
         try:
             if target == "mv":
@@ -93,19 +94,34 @@ def upload_file(request, target):
                     res_upload["result"] = 5
                 else:
                     if target == "mv":
-                        mv = MV_Template()
-                        mv.mv_name = name
-                        mv.mv_file_location = f
-                        mv.save()
-                    elif target == "subtitle":
-                        subtitle = Subtitle_Template()
-                        subtitle.subtitle_name = name
-                        subtitle.subtitle_file_location = f
-                        subtitle.save()
+                        for mv_instance in MV_Template.objects.all():
+                            if name == mv_instance.name():
+                                exists_flag = True
+                                break
 
-                    res_upload["result"] = 0
+                        if not exists_flag:
+                            mv = MV_Template()
+                            mv.mv_name = name
+                            mv.mv_file_location = f
+                            mv.save()
+                    elif target == "subtitle":
+                        for subtitle_instance in Subtitle_Template.objects.all():
+                            if name == subtitle_instance.name:
+                                exists_flag = True
+                                break
+
+                        if not exists_flag:
+                            subtitle = Subtitle_Template()
+                            subtitle.subtitle_name = name
+                            subtitle.subtitle_file_location = f
+                            subtitle.save()
+
+                    if exists_flag:
+                        res_upload["result"] = 10
+                    else:
+                        res_upload["result"] = 0
             else:
-                res_upload["result"] = 10
+                res_upload["result"] = 3
         except IOError:
             res_upload["result"] = 2
         except Exception as e:
@@ -123,9 +139,12 @@ def upload_file(request, target):
             log_event,  log_msg[res_key]) 
 
     result = []
-    result.append({"name":name,
-                   "size":f.file.size,
-                   })
+    if exists_flag:
+        result.append({"exists":True})
+    else:
+        result.append({"name":name,
+                       "size":f.file.size,
+                       })
     
     return HttpResponse(json.dumps(result), content_type="application/json")
 
