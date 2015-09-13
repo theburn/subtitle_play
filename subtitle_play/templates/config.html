@@ -88,15 +88,17 @@
     </div>
 
     <div class="ui bottom attached tab segment" data-tab="third">
-         <form action="/upload_file/mv/" enctype="multipart/form-data" method="post">{% csrf_token %}
-			<label>文 件：</label><input type="file" name="uploadfile" />
-			<input type="submit" value="提交"/>
-            <!--
-            <div class="ui large basic icon buttons">
-                <button class="ui button" type="file" name="uploadfile"><i class="upload icon"></i>上传</button>
+        <div id="subtitle_upload_op">
+            <input id="subtitle_fileupload" type="file" name="files[]" data-url="/upload_file/subtitle/" class="ui blue basic button">
+        </div>
+
+        <div id="progress"  style="max-width:33.3%">
+            <div class="bar" style="width: 0%;">
+                <div class="progress"></div>
             </div>
-            -->
-         </form>
+        </div>
+        <div id="subtitle_upload_result" style="max-width:33.3%"></div>
+         
          <div class="ui raised segment" id="subtitle_list_template">
              <h4 class="ui left floated header"><i class="tag icon"></i>系统中已存在的歌词</h4>
              <div class="ui clearing divider"></div>

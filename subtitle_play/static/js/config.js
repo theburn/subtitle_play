@@ -63,20 +63,20 @@ $(document).ready(function() {
 
 
         add: function (e, data) {
-            $("#upload_op").children("button").remove();
+            $("#mv_upload_op").children("button").remove();
             $("#mv_upload_result").hide();
             $("#progress").hide();
 
             //alert($("#mv_fileupload").val());
             data.context = $('<button/>').text('上传').addClass("ui blue button")
-                .appendTo($("#upload_op"))
+                .appendTo($("#mv_upload_op"))
                 .click(function () {
                     //data.context = $('#mv_upload_result').text('上传中...').addClass("ui positive message").replaceAll($(this));
                     $('#mv_upload_result').text('上传中...').addClass("ui positive message");
                     $("#mv_upload_result").show();
                     $("#progress").show();
                     data.submit();
-                    $("#upload_op").children("button").remove();
+                    $("#mv_upload_op").children("button").remove();
                 });
         },
 
@@ -100,6 +100,55 @@ $(document).ready(function() {
 
 
     });
+
+
+    $('#subtitle_fileupload').fileupload({
+        dataType: 'json',
+        replaceFileInput:false,
+        formData: [
+            { name: "csrfmiddlewaretoken", value:get_cookie('csrftoken')}
+        ],
+
+
+        add: function (e, data) {
+            $("#subtitle_upload_op").children("button").remove();
+            $("#subtitle_upload_result").hide();
+            $("#progress").hide();
+
+            //alert($("#subtitle_fileupload").val());
+            data.context = $('<button/>').text('上传').addClass("ui blue button")
+                .appendTo($("#subtitle_upload_op"))
+                .click(function () {
+                    //data.context = $('#subtitle_upload_result').text('上传中...').addClass("ui positive message").replaceAll($(this));
+                    $('#subtitle_upload_result').text('上传中...').addClass("ui positive message");
+                    $("#subtitle_upload_result").show();
+                    $("#progress").show();
+                    data.submit();
+                    $("#subtitle_upload_op").children("button").remove();
+                });
+        },
+
+
+        done: function (e, data) {
+            $("#progress").addClass("ui progress success")
+            $.each(data.result, function (index, file) {
+                $('#subtitle_upload_result').text(file.name + "  :  上传成功!")
+            });
+            $("#subtitle_upload").click();
+        },
+
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+            $("#progress").find(".progress").text(progress + '%')
+        },
+
+
+    });
+
 
 
 
