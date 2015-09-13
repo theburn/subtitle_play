@@ -18,6 +18,9 @@ import os
 import time
 import xml.sax.saxutils
 import logging
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 MAX_SIZE = 1024 * 1024 * 1024 * 2   # 2G
 MEDIA_ROOT = settings.MEDIA_ROOT
@@ -106,7 +109,7 @@ def upload_file(request, target):
         res_upload["result"] = 4
 
 
-    log_event = u"上传" + name.encode("utf-8").decode("utf-8")
+    log_event = u"上传" + name
     res_key = str(res_upload['result'])
     log = logging.getLogger("audit")
     log.debug("%s %s %s %s",  \
