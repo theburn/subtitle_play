@@ -124,7 +124,7 @@ def upload_file(request, target):
 
     result = []
     result.append({"name":name,
-                   "size":f.size,
+                   "size":f.file.size,
                    })
     
     return HttpResponse(json.dumps(result), content_type="application/json")
