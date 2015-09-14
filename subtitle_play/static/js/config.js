@@ -203,14 +203,12 @@ $(document).ready(function() {
                  }
             
            },"json")
-
-
-
-
     });
 
-
-
+    $("#music_save").on("click",function(){
+         $.post("/post_music/",
+            function(data){
+            }, "json");
 
 });
 

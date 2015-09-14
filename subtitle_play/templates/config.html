@@ -65,8 +65,19 @@
                 <div class="ui raised segment">
                     <div>
                         <a class="ui red ribbon label">歌曲</a>
-                        <div class="ui input">
-                            <input type="text" placeholder="歌曲名称">
+                        <div class="ui search dropdown selection active visible">
+                            <select>
+                                <option value="">State</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                            <i class="dropdown icon"></i>
+                            <input class="search" tabindex="0">
+                            <div class="text">Alabama</div>
+                            <div class="menu transition visible" tabindex="-1" style="display: block !important;">
+                                <div class="item" data-value="WI">Wisconsin</div>
+                                <div class="item" data-value="WY">Wyoming</div>
+                            </div>
                         </div>
                     </div>
 
@@ -75,9 +86,9 @@
                     <div style="padding: 50px 0px 50px 0px;">
                         <a class="ui blue ribbon label">&nbsp MV</a>
                         <div class="ui selection dropdown ">
-                            <input type="hidden" name="gender">
+                            <input type="hidden" name="mv_dropdown_select">
                             <i class="dropdown icon"></i>
-                            <div class="default text">MV名称</div>
+                            <div class="default text" id="mv_selected">MV名称</div>
                             <div class="menu" id="mv_select_list">
                             </div>
                         </div>
@@ -88,9 +99,9 @@
                     <div>
                         <a class="ui teal ribbon label">字幕</a>
                         <div class="ui selection dropdown">
-                            <input type="hidden" name="gender">
+                            <input type="hidden" name="subtitle_dropdown_select">
                             <i class="dropdown icon"></i>
-                            <div class="default text">歌词名称</div>
+                            <div class="default text" id="subtitle_selected">歌词名称</div>
                             <div class="menu" id="subtitle_select_list">
                             </div>
                         </div>
@@ -100,7 +111,7 @@
 
                     <br/>
 
-                    <button class="ui olive button" style="margin-left:90px">Save </button>
+                    <button class="ui olive button" style="margin-left:90px" id="music_save">Save </button>
                 </div>
             </div>
         </div>
