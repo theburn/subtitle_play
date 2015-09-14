@@ -39,10 +39,12 @@ def config(request):
     except:
         all_music_instance_list = []
 
-    return render_to_response("config.html", context_instance=RequestContext(request), \
+    return render_to_response("config.html", \
                             {
-                                "music_list":all_music_instance_list,
-                            })
+                                "music_list":all_music_instance_list, \
+                            }, \
+                             context_instance=RequestContext(request)
+                            )
 
 @login_required
 def controllor(request):
