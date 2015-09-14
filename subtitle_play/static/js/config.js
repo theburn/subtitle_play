@@ -284,8 +284,8 @@ $(document).ready(function() {
 
 
     $("#search_text").change(function() {
-          $("#music_save").css("margin-left","90px");
           $("#music_delete").hide();
+          $("#music_save").css("margin-left","90px");
     });
 
 
