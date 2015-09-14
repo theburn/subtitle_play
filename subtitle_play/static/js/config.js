@@ -235,8 +235,8 @@ $(document).ready(function() {
             {
                 //music_name:$("#music_dropdown_selected").val(),
                 music_name:$("#search_text").val(),
-                mv_name:$("#mv_dropdown_selected").val(),
-                subtitle_name:$("#subtitle_dropdown_selected").val(),
+                mv_name:$("#mv_selected").val(),
+                subtitle_name:$("#subtitle__selected").val(),
                 csrfmiddlewaretoken:get_cookie('csrftoken'),
             },
             function(data){
