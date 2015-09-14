@@ -260,7 +260,7 @@ $(document).ready(function() {
     $("#music_dropdown_selected").change(function() {
 
         var music_name = $("#music_dropdown_selected").text();
-        $.("/get_music_args/", 
+        $.get("/get_music_args/", 
            {
                music_name: music_name
            },
