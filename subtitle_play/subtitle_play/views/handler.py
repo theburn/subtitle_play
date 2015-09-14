@@ -249,6 +249,24 @@ def post_music(request):
 
 
 
+@login_required
+def get_music_list(request):
+    res_music = {"result":None, "music_list":[]}
+    if request.is_ajax() and request.method == "GET":
+        try:
+            music_all = Music.objects.all()
+            for music in music_all:
+                res_music["music_list"].append(music.music_name)
+            
+            res_music["result"] = 0
+        except:
+            res_music["result"] = 1
+    else:
+        res_music["result"] = 3
+
+    return JsonResponse(res_music)
+
+
 
 
 

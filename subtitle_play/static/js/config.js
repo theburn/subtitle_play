@@ -205,19 +205,19 @@ $(document).ready(function() {
            },"json")
 
 
-         $.get("/get_music_config/",
+         $.get("/get_music_list/",
             function(data){
                 var result = data.result;
-                var music_config= "Empty";
+                var music_list= "Empty";
                 if (result == 0) {
-                    music_config = data.music_config;
+                    music_list = data.music_list;
                 }
                 //clean html content first
                 $("#music_select_list").empty();
 
-                if (music_config != "Empty") {
-                    for(var i = 0; i < music_config.length; i++) {
-                        var content = '<div class="item" data-value="' + music_config[i]  + '">' + music_config[i] + '</div>';
+                if (music_list != "Empty") {
+                    for(var i = 0; i < music_list.length; i++) {
+                        var content = '<div class="item" data-value="' + music_list[i]  + '">' + music_list[i] + '</div>';
                         $("#music_select_list").append(content);
                     }
                  }
@@ -236,7 +236,7 @@ $(document).ready(function() {
                 music_name:$("#music_dropdown_selected").val(),
                 mv_name:$("#mv_dropdown_selected").val(),
                 subtitle_name:$("#subtitle_dropdown_selected").val(),
-                csrfmiddlewaretoken:getCookie('csrftoken'),
+                csrfmiddlewaretoken:get_cookie('csrftoken'),
             },
             function(data){
                 result = data.result;
