@@ -303,6 +303,29 @@ def get_music_args(request):
 
 
 
+@login_required
+@csrf_protect
+def delete_music(request):
+    res_delete = {"result":None}
+    if request.is_ajax() and request.method == "POST":
+        try:
+            music_name = request.POST.get("music_name",None).strip()
+            music_is_exists = check_music_is_exists(music_name)
+
+            if music_is_exists:
+                music_instance = Music.objects.get(music_name = music_name)
+                music_instance.delete()
+                res_delete["result"] = 0
+            else:
+                res_delete["result"] = 1
+
+        except:
+            res_delete["result"] = 2
+    else:
+        res_delete["result"] = 3
+
+    return JsonResponse(res_delete)
+
 
 
 
