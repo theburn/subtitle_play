@@ -239,6 +239,15 @@ $(document).ready(function() {
                 csrfmiddlewaretoken:getCookie('csrftoken'),
             }
             function(data){
+                result = data.result;
+                switch (result) {
+                    case 0:
+                        alert("添加成功!");
+                        break;
+                    default:
+                        alert("添加失败,ErrCode:" + result);
+                        break;
+                }
 
             }, "json");
     });
