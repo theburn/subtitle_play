@@ -237,7 +237,7 @@ $(document).ready(function() {
                 mv_name:$("#mv_dropdown_selected").val(),
                 subtitle_name:$("#subtitle_dropdown_selected").val(),
                 csrfmiddlewaretoken:getCookie('csrftoken'),
-            }
+            },
             function(data){
                 result = data.result;
                 switch (result) {
