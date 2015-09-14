@@ -228,7 +228,7 @@ def post_music(request):
                     music_instance = Music(music_name = music_name)
 
                 mv_instance = MV_Template.objects.get(mv_name = mv_name)
-                subtitle_instance = subtitle_Template.objects.get(subtitle_name = subtitle_name)
+                subtitle_instance = Subtitle_Template.objects.get(subtitle_name = subtitle_name)
 
                 music_instance.music_mv_id = mv_instance.id
                 music_instance.music_subtitle_id = subtitle_instance.id
