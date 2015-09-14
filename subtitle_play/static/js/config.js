@@ -209,6 +209,7 @@ $(document).ready(function() {
          $.post("/post_music/",
             function(data){
             }, "json");
+    });
 
 });
 
