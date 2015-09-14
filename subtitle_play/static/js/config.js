@@ -257,7 +257,7 @@ $(document).ready(function() {
     });
 
 
-    $("#music_dropdown_selected").change(function() {
+    $("#music_dropdown_selected").bind("DOMSubtreeModified",function() {
 
         var music_name = $("#music_dropdown_selected").text();
         $.get("/get_music_args/", 
