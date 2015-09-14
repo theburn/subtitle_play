@@ -307,7 +307,7 @@ $(document).ready(function() {
                         break;
                 }
 
-                window.location.reload()
+                //window.location.reload()
 
             }, "json");
 
