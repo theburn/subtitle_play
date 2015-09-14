@@ -303,7 +303,7 @@ $(document).ready(function() {
                         alert("删除成功!");
                         break;
                     default:
-                        alert("删除失败,ErrCode:" + result);
+                        //alert("删除失败,ErrCode:" + result);
                         break;
                 }
 
