@@ -28,6 +28,7 @@ urlpatterns += patterns('subtitle_play.views',
     url(r'^get_subtitle_template/$',  'get_subtitle_template'), 
     url(r'^post_music/$',  'post_music'), 
     url(r'^get_music_list/$',  'get_music_list'), 
+    url(r'^get_music_args/$',  'get_music_args'), 
 )
 
 

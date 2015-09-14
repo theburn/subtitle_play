@@ -279,6 +279,28 @@ def get_music_list(request):
 
 
 
+@login_required
+def get_music_args(request):
+    res_music = {"result":None, "args_list":{"mv":None, "subtitle":None}}
+    if request.is_ajax() and request.method == "GET":
+        try:
+            music_name = request.GET.get("music_name", None)
+            if music_name is not None:
+                music_instance = Music.objects.get(music_name = music_name)
+                res_music["args_list"]["mv"] = music_instance.music_mv.mv_name
+                res_music["args_list"]["subtitle"] = music_instance.music_subtitle.subtitle_name
+                res_music["result"] = 0
+            else:
+                res_music["result"] = 4
+            
+        except:
+            res_music["result"] = 1
+    else:
+        res_music["result"] = 3
+
+    return JsonResponse(res_music)
+
+
 
 
 

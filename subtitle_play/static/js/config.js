@@ -256,6 +256,32 @@ $(document).ready(function() {
 
     });
 
+
+    $("#music_dropdown_selected").change(function() {
+
+        var music_name = $("#music_dropdown_selected").text();
+        $.("/get_music_args/", 
+           {
+               music_name: music_name
+           },
+          function(data) {
+              if (data.result == 0) {
+                  mv_name = data.args_list["mv"];
+                  subtitle_name = data.args_list["subtitle"];
+
+                  $("#mv_selected").text(mv_name);
+                  $("#subtitle_selected").text(subtitle_name);
+
+              } else {
+                  alert("该歌曲信息不完整!")
+              }
+
+          },"json")
+
+    });
+
+
+
 });
 
 
