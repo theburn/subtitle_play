@@ -293,7 +293,7 @@ $(document).ready(function() {
     $("#music_delete").on("click",function(){
          $.post("/delete_music/",
             {
-                music_name:$("#music_dropdown_selected").val(),
+                music_name:$("#music_dropdown_selected").text(),
                 csrfmiddlewaretoken:get_cookie('csrftoken'),
             },
             function(data){
@@ -303,11 +303,11 @@ $(document).ready(function() {
                         alert("删除成功!");
                         break;
                     default:
-                        //alert("删除失败,ErrCode:" + result);
+                        alert("删除失败,ErrCode:" + result);
                         break;
                 }
 
-                //window.location.reload()
+                window.location.reload()
 
             }, "json");
 
