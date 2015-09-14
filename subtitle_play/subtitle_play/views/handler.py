@@ -25,7 +25,7 @@ sys.setdefaultencoding("utf-8")
 MAX_SIZE = 1024 * 1024 * 1024 * 2   # 2G
 MEDIA_ROOT = settings.MEDIA_ROOT
 
-from common_function import get_ip_address
+from common_function import get_ip_address, check_music_is_exists, check_mv_is_exists, check_subtitle_is_exists
 
 def __log_test(msg):
     log = logging.getLogger("audit")
@@ -200,6 +200,52 @@ def get_subtitle_template(request):
         res_subtitle["subtitle_list"] = "ERROR_2"
 
     return JsonResponse(res_subtitle)
+
+
+
+
+
+
+
+@login_required
+@csrf_protect
+def post_music(request):
+    res_post = {"result":None}
+    if request.is_ajax() and request.method == "POST":
+        try:
+            music_name = request.POST.get("music_name",None).strip()
+            mv_name = request.POST.get("mv_name",None).strip()
+            subtitle_name = request.POST.get("subtitle_name",None).strip()
+
+            music_is_exists = check_music_is_exists(music_name)
+            mv_is_exists = check_mv_is_exists(mv_name)
+            subtitle_is_exists= check_subtitle_is_exists(subtitle_name)
+
+            if mv_is_exists and subtitle_is_exists:
+                if music_is_exists:
+                    music_instance = Music.objects.get(music_name = music_name)
+                else:
+                    music_instance = Music(music_name = music_name)
+
+                mv_instance = MV_Template.objects.get(mv_name = mv_name)
+                subtitle_instance = subtitle_Template.objects.get(subtitle_name = subtitle_name)
+
+                music_instance.music_mv_id = mv_instance.id
+                music_instance.music_subtitle_id = subtitle_instance.id
+
+                music_instance.save()
+                res_post["result"] = 0
+
+            else:
+                res_post["result"] = 1
+
+        except:
+            res_post["result"] = 2
+    else:
+        res_post["result"] = 3
+
+    return JsonResponse(res_post)
+
 
 
 
