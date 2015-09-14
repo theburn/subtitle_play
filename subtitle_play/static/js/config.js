@@ -250,7 +250,10 @@ $(document).ready(function() {
                         break;
                 }
 
+                window.location.reload()
+
             }, "json");
+
     });
 
 });
