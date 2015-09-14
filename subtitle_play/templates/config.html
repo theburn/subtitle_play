@@ -40,7 +40,9 @@
   <script src="/static/js/components/tab.min.js"></script>
   <script src="/static/js/config.js"></script>
   <script type="text/javascript">
+    function music_config_click() {
         $("#music_config").click();
+    }
   </script>
   <style type="text/css">
     .bar {
@@ -51,7 +53,7 @@
 
   
 </head>
-<body>
+<body onload="music_config_click()">
     <div class="ui ignored info message">
         请先配置<code>MV上传</code>和<code>字幕上传</code>，然后再在歌曲配置中选中各个属性
     </div>
