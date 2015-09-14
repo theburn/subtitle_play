@@ -119,6 +119,25 @@
             <div class="column">
                 <div class="ui raised segment">
                       <a class="ui orange right ribbon label">已添加歌曲</a>
+                        <table class="ui celled table">
+                          <thead>
+                            <tr>
+                                <th>歌曲</th>
+                                <th>MV</th>
+                                <th>歌词</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for music in muic_list%}
+                            <tr>
+                                <td>{{ music.music_name }}</td>
+                                <td>{{ music.mv_name }}</td>
+                                <td>{{ music.subtitle_name}}</td>
+                              <td>Cell</td>
+                            </tr>
+                          {% endfor %}
+                          </tbody>
+                        </table>
                 </div>
             </div>
         </div>

@@ -34,7 +34,15 @@ def __log_test(msg):
 
 @login_required
 def config(request):
-    return render_to_response("config.html", context_instance=RequestContext(request))
+    try:
+        all_music_instance_list = Music.objects.all()
+    except:
+        all_music_instance_list = []
+
+    return render_to_response("config.html", context_instance=RequestContext(request), \
+                            {
+                                "music_list":all_music_instance_list,
+                            })
 
 @login_required
 def controllor(request):
