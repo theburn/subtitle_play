@@ -131,9 +131,8 @@
                           {% for music in music_list %}
                             <tr>
                                 <td>{{ music.music_name }}</td>
-                                <td>{{ music.mv_name }}</td>
-                                <td>{{ music.subtitle_name}}</td>
-                              <td>Cell</td>
+                                <td>{{ music.music_mv.mv_name }}</td>
+                                <td>{{ music.music_subtitle.subtitle_name}}</td>
                             </tr>
                           {% endfor %}
                           </tbody>
