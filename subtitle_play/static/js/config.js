@@ -271,6 +271,8 @@ $(document).ready(function() {
 
                   $("#mv_selected").text(mv_name);
                   $("#subtitle_selected").text(subtitle_name);
+                  $("music_save").css("margin-left","30px");
+                  $("#music_delete").show();
 
               } else {
                   alert("该歌曲信息不完整!")
