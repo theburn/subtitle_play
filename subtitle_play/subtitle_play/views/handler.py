@@ -251,6 +251,7 @@ def post_music(request):
             mv_is_exists = check_mv_is_exists(mv_name)
             subtitle_is_exists= check_subtitle_is_exists(subtitle_name)
 
+            __log_test(music_name)
             if mv_is_exists and subtitle_is_exists:
                 if music_is_exists:
                     music_instance = Music.objects.get(music_name = music_name)
