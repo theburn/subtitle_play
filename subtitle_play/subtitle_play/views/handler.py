@@ -257,6 +257,7 @@ def post_music(request):
                     __log_test("i see you")
                 else:
                     music_instance = Music(music_name = music_name)
+                    __log_test("i see you new")
 
                 mv_instance = MV_Template.objects.get(mv_name = mv_name)
                 subtitle_instance = Subtitle_Template.objects.get(subtitle_name = subtitle_name)
