@@ -30,25 +30,21 @@
     <link rel="stylesheet" type="text/css" href="/static/js/components/icon.css">
     <link rel="stylesheet" type="text/css" href="/static/js/components/tab.css">
     <link rel="stylesheet" type="text/css" href="/static/css/docs.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/video-js.css">
 
 
     <script src="/static/js/jquery-ui-1.10.1.custom.min.js"></script>
-    <script src="/static/js/vendor/jquery.ui.widget.js"></script>
-    <script src="/static/js/jquery.iframe-transport.js"></script>
-    <script src="/static/js/jquery.fileupload.js"></script>
-    <script src="/static/js/login.js"></script>
     <script src="/static/js/components/tab.min.js"></script>
-    <script src="/static/js/config.js"></script>
+    <script src="/static/js/video.js"></script>
+
     
 </head>
 <body>
 
 
 <div id="display_lyric"></div>
-
-
-
-
+<video id="mv_video" class="video-js vjs-default-skin vjs-big-play-centered"
+</video>
 
 
 
@@ -61,6 +57,7 @@
 			if (JSON.parse(event.data)["type"] == "lyric") {
 				lyric_content = JSON.parse(event.data)['message'];
                 $("#display_lyric").text(lyric_content);
+                mv_player.play();
 
 			}
 		}
@@ -94,6 +91,13 @@
                     }
                 }, 5);
     };
+
+mv_player = null
+
+videojs("mv_video", {"controls": true, "autoplay": false, "preload": "auto", "loop": "true"}, function(){
+  // Player (this) is initialized and ready.
+        mv_player = this;
+});
 
 	
 </script>
