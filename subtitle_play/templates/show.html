@@ -49,14 +49,13 @@
 
 
 <script type="text/javascript">
+    var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
+    register(chat_socket);
     videojs("mv_video", {"controls": true, "autoplay": false, "preload": "auto", "loop": "true"}, function(){
       // Player (this) is initialized and ready.
             mv_player = this;
     });
 
-
-    var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
-    register(chat_socket);
 
 	if (chat_socket) {
 		chat_socket.onmessage = function(event) {
