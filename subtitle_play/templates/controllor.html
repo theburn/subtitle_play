@@ -56,16 +56,16 @@
                       </thead>
                       <tbody>
                       {% for music in music_list %}
-                        <tr>
+                      <tr id={{ music.music_name }}>
                             <td>{{ music.music_name }}</td>
                             <td>
                                 <div class="ui vertical labeled icon buttons">
-                                    <button class="ui button"><i class="play icon"></i> Play </button>
+                                    <button class="ui button play_button"><i class="play icon"></i> Play </button>
                                 </div>
                             </td>
                             <td>
                                 <div class="ui vertical labeled icon buttons">
-                                    <button class="ui button"><i class="stop icon labeled"></i> Stop </button>
+                                    <button class="ui button stop_button"><i class="stop icon"></i> Stop </button>
                                 </div>
                             </td>
                         </tr>
@@ -82,5 +82,73 @@
         </div>
     </div>
 
+<script type="text/javascript">
+    var chat_socket = new WebSocket('ws://' + {{ IP }} + ':10030/chat');
+    register(chat_socket);
+
+    $(".play_button").on("click", function(){
+        play_music_name = $(this).closest("tr").id;
+        alert(play_music_name);
+
+    });
+
+
+
+    /*
+	if (chat_socket) {
+		chat_socket.onmessage = function(event) {
+			if (JSON.parse(event.data)["type"] == "") {
+				if (JSON.parse(event.data)['message'] == "Yes"){
+					$info_alert("对方用户已同意释放串口，并在保存相关配置，请稍等...");
+				}else{
+					$info_alert("对方用户正在通过串口操作设备，请稍等...\r如有问题请电话联系对方，或联系admin用户!");
+				}
+			}else if (JSON.parse(event.data)["type"] == "release") {
+				$info_alert(JSON.parse(event.data)['message'] + "串口已经释放");
+				$("#ser_mng_btn").removeClass("disabled");
+				$("#ser_mng_btn").removeAttr("disabled");
+				$("#ck_3g_state").removeClass("deactivate");
+				if (SIM3G_BTN_STAT == 1) {
+					$("#3g_mng_btn").removeClass("disabled");
+					$("#3g_mng_btn").removeAttr("disabled");
+				}
+				
+			}
+		}
+	}
+    */
+
+    function register(chat_socket) {
+
+        var msg = "register#@#controllor"
+        sendMessage(chat_socket, msg);
+    }
+
+    function sendMessage(chat_socket, msg) 
+    {
+            waitForSocketConnection(chat_socket, function() {
+                chat_socket.send(msg);
+            });
+    };
+
+
+    function waitForSocketConnection(socket, callback)
+    {
+            setTimeout(
+                function(){
+                    if (socket.readyState === 1) {
+                        if(callback !== undefined){
+                            callback();
+                        }
+                        return;
+                    } else {
+                        waitForSocketConnection(socket,callback);
+                    }                                                                                                                       
+                }, 5);
+    };
+
+
+	
+</script>
 </body>
 </html>
