@@ -231,10 +231,16 @@ $(document).ready(function() {
     });
 
     $("#music_save").on("click",function(){
+        var save_music_name = null;
+        if ($("#search_text").val() == "")  {
+            save_music_name = $("#music_dropdown_selected").text();
+        }else{
+            save_music_name = $("#search_text").val();
+        }
          $.post("/post_music/",
             {
                 //music_name:$("#music_dropdown_selected").val(),
-                music_name:$("#search_text").val(),
+                music_name:save_music_name,
                 mv_name:$("#mv_selected").text(),
                 subtitle_name:$("#subtitle_selected").text(),
                 csrfmiddlewaretoken:get_cookie('csrftoken'),
