@@ -101,9 +101,12 @@
                     play_lyric = "Error_1";
                 }
 
+                $("#controllor_lyric").append('<div id="lyric_0">《' + play_music_name + '》</div>');
+
+                max_line = play_lyric.length;
                 if (play_lyric != "Error_1") {
-                    for(var i=0; i<play_lyric.length;i++) {
-                        var content = '<div id="lyric_' + i + '">' + play_lyric[i] + '</div>';
+                    for(var i=1; i<play_lyric.length;i++) {
+                        var content = '<div id="lyric_' + i + '">' + play_lyric[i-1] + '</div>';
                         $("#controllor_lyric").append(content);
                     }
                 }
@@ -175,13 +178,15 @@
 
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
+        current_line = 0;
          
         if(e && e.keyCode==38 || e && e.keyCode==37){//上,左
-            alert('38=上键，37=左键');
+            if (current_line > 0) {
+                ;
+            }
         }
          
         if(e && e.keyCode==40 || e && e.keyCode==39){//下,右
-            alert('38=下键，37=右键');
         }
     };
 
