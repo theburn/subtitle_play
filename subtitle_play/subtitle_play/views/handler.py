@@ -56,6 +56,7 @@ def controllor(request):
     return render_to_response("controllor.html", \
                             {
                                 "music_list":all_music_instance_list, \
+                                "IP" : get_ip_address("eth0"), \
                             }, \
                              context_instance=RequestContext(request)
                             )
