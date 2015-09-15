@@ -314,6 +314,33 @@ def get_music_args(request):
     return JsonResponse(res_music)
 
 
+@login_required
+def get_music_lyric(request):
+    res_music = {"result":None, "lyric":[]}
+    if request.is_ajax() and request.method == "GET":
+        try:
+            music_name = request.GET.get("music_name", None)
+            if music_name is not None:
+                music_instance = Music.objects.get(music_name = music_name)
+                res_music["lyric"] = music_instance.music_subtitle.subtitle_file_location.readlines()
+                res_music["result"] = 0
+            else:
+                res_music["result"] = 4
+            
+        except:
+            res_music["result"] = 1
+    else:
+        res_music["result"] = 3
+
+    return JsonResponse(res_music)
+
+
+
+
+
+
+
+
 
 
 @login_required
