@@ -87,7 +87,7 @@
     register(chat_socket);
 
     $(".play_button").on("click", function(){
-        play_music_name = $(this).closest("tr").id;
+        play_music_name = $(this).closest("tr").attr("id");
         alert(play_music_name);
 
     });
