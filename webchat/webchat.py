@@ -106,6 +106,15 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
                 else:
                     log.info("Register : content is error!")
 
+            elif msg_type == "register":
+                if msg_content in ("stop", "start"):
+                    p2pClients = (SocketHandler.socket_id_map.setdefault("show", None), )
+                    if p2pClients[0] is None:
+                        log.info("socket_id get error")
+                    else:
+                        SocketHandler.send_only(p2pClients, msg)
+
+
             else:
                 log.info("msg type is error!")
 
