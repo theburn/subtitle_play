@@ -56,7 +56,7 @@
 		chat_socket.onmessage = function(event) {
 			if (JSON.parse(event.data)["type"] == "lyric") {
 				lyric_content = JSON.parse(event.data)['message'];
-                $("#display_lyric").text(lyric_content);
+                $("#display_lyric").tex(lyric_content);
                 mv_player.play();
 
 			}
