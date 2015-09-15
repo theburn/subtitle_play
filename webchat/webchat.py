@@ -25,6 +25,17 @@ from django.contrib import messages
 from django.conf import settings
 from tornado.options import define, options
 
+
+formatter = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(format = formatter)
+log = logging.getLogger('webchat')
+
+def prepare_log(level):
+    global log
+    log.setLevel(level)
+
+
+
 define("port", default=10030, help="run on the given port", type=int)
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -38,7 +49,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
     @staticmethod
     def send_only(p2pClients, message):
         ''' 发送给某个客户端 '''
-        print "send_only message = %s" %message
+        log.info("send_only message = %s" %message)
         for p2pClient in p2pClients:
             p2pClient.write_message(json.dumps(message))
 
@@ -49,8 +60,9 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
                 'type': 'sys',
                 'message': 'Welcome to Subtitle_Play ! id: ' + str(id(self)),
                 }))
+            log.info('Welcome to Subtitle_Play ! id: ' + str(id(self)))
         except:
-            print "open error"
+            log.info("open error")
 
 
     def on_close(self):
@@ -59,13 +71,14 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
                 'type': 'sys',
                 'message': 'ByeBye! id: ' + str(id(self)),
                 }))
+            log.info('ByeBye! id: ' + str(id(self)))
         except:
-            print "open error"
+            log.info("close error")
 
 
 
     def on_message(self, message):
-        print "message = %s" %message
+        log.info("message = %s" %message)
         s = message.split("#@#")
         if len(s) == 2:
             msg_type = s[0] # lyric or mv
@@ -77,7 +90,7 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             if msg_type in ("lyric", "mv"):
                 p2pClients = (SocketHandler.socket_id_map.setdefault("show", None), )
                 if p2pClients[0] is None:
-                    print "socket_id get error"
+                    log.info("socket_id get error")
                 else:
                     SocketHandler.send_only(p2pClients, msg)
                     
@@ -88,11 +101,12 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
                     else:
                         socket_id_map["show"] = self
 
+                    log.info("Register : %s is online" %msg_content)
                 else:
-                    print "Register : content is error!"
+                    log.info("Register : content is error!")
 
             else:
-                print "msg type is error!"
+                log.info("msg type is error!")
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -109,7 +123,9 @@ class Application(tornado.web.Application):
 
 ##MAIN
 if __name__ == '__main__':
+    prepare_log(logging.INFO)
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
+    log.info("start.....!")
     tornado.ioloop.IOLoop.instance().start()
