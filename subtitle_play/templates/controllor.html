@@ -84,7 +84,7 @@
         <div class="column">
             <div class="ui raised segment">
                   <a class="ui orange right ribbon label">当前歌词</a>
-                  <div id="controllor_lyric">
+                  <div id="controllor_lyric" style="text-align:center; padding-top:5px">
                   <div>
             </div>
         </div>
@@ -109,7 +109,7 @@
 
                 $("#controllor_lyric").append('<div id="lyric_0">《' + play_music_name + '》</div>');
 
-                max_line = play_lyric.length;
+                max_line = play_lyric.length + 1;
                 if (play_lyric != "Error_1") {
                     for(var i=1; i<play_lyric.length;i++) {
                         var content = '<div id="lyric_' + i + '">' + play_lyric[i-1] + '</div>';
@@ -188,11 +188,15 @@
          
         if(e && e.keyCode==38 || e && e.keyCode==37){//上,左
             if (current_line > 0) {
-                ;
+
             }
         }
          
         if(e && e.keyCode==40 || e && e.keyCode==39){//下,右
+            if (current_line <= max_line) {
+                $("#lyric_"+current_line).addClass("lyric_selected");
+                $("#lyric_"+current_line).siblings().removeClass("lyric_selected");
+            }
         }
     };
 
