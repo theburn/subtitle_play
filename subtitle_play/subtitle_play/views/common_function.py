@@ -52,9 +52,11 @@ def check_subtitle_is_exists(subtitle_name):
 def get_file_encoding(subtitle_instance):
     f=subtitle_instance.subtitle_file_location.file
     f_encoding = None
-    with open(f,"rb") as f:
+    try:
         data = f.read()
         f_encoding = chardet.detect(data)["encoding"]
+    except:
+        pass
 
     return f_encoding
 
