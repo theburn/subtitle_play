@@ -30,7 +30,7 @@ urlpatterns += patterns('subtitle_play.views',
     url(r'^delete_music/$',  'delete_music'), 
     url(r'^get_music_list/$',  'get_music_list'), 
     url(r'^get_music_args/$',  'get_music_args'), 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
