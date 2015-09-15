@@ -88,8 +88,19 @@
 
     $(".play_button").on("click", function(){
         play_music_name = $(this).closest("tr").attr("id");
+        $.get("/get_music_lyric/", 
+                {
+                    music_name:play_music_name,
+                },
+                function(data) {
+                if (data.result == 0) {
+                    play_lyric = data.lyric;
+                }else{
+                    play_lyric = "Error_1"
+                }
 
-
+                alert(play_lyric);
+        })
     });
 
     $(".stop_button").on("click", function(){
