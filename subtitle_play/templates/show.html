@@ -43,14 +43,15 @@
 
 
 <div id="display_lyric"></div>
-<video id="mv_video" class="video-js vjs-default-skin vjs-big-play-centered"></video>
+<video id="mv_video" class="video-js vjs-default-skin"></video>
 
 
 
 <script type="text/javascript">
     var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
     register(chat_socket);
-    videojs("mv_video", {"controls": true, "autoplay": false, "preload": "auto", "loop": "true"}, function(){
+    mv_player = null;
+    videojs("mv_video", {"autoplay": false, "preload": "auto", "loop": "true"}, function(){
       // Player (this) is initialized and ready.
             mv_player = this;
     });
