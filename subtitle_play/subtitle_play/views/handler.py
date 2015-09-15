@@ -13,6 +13,7 @@ from django.template import RequestContext
 from subtitle_play.music.models import *
 from django.core.files.uploadedfile import UploadedFile
 
+import copy
 import json
 import os
 import time
@@ -328,7 +329,8 @@ def get_music_lyric(request):
             music_name = request.GET.get("music_name", None)
             if music_name is not None:
                 music_instance = Music.objects.get(music_name = music_name)
-                f_encoding = get_file_encoding(music_instance.music_subtitle)
+                f = copy.deepcopy(music_instance.music_subtitle)
+                f_encoding = get_file_encoding(f)
                 if f_encoding.lower() in ("gbk", "gb2312"):
                     for line in music_instance.music_subtitle.subtitle_file_location.readlines():
                         res_music["lyric"].append(line.decode("gbk").encode("utf-8"))
