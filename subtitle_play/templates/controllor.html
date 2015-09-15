@@ -49,17 +49,17 @@
                     <table class="ui celled table">
                       <thead>
                         <tr>
-                            <th>歌曲</th>
-                            <th>播放</th>
-                            <th>停止</th>
+                            <th class="th_center">歌曲</th>
+                            <th class="th_center">播放</th>
+                            <th class="th_center"> 停止</th>
                         </tr>
                       </thead>
                       <tbody>
                       {% for music in music_list %}
                         <tr>
                             <td>{{ music.music_name }}</td>
-                            <td><button class="ui button"><i class="play icon"></i> Play </button></td>
-                            <td><button class="ui button"><i class="stop icon"></i> Stop </button></td>
+                            <td><button class="ui button "><i class="play icon labeled"></i> Play </button></td>
+                            <td><button class="ui button"><i class="stop icon labeled"></i> Stop </button></td>
                         </tr>
                       {% endfor %}
                       </tbody>
