@@ -37,13 +37,28 @@
     <script src="/static/js/components/tab.min.js"></script>
     <script src="/static/js/video.js"></script>
 
+    <style type="text/css">
+        .lyric {
+            position:absolute;
+            margin-top:2%;
+            z-index:100;
+            font-color:white;
+            font-size: xx-large;
+            font-weight: bold;
+        }
+        .mv {
+            position:absolute;
+            top:0px;
+            z-index:50;
+        }
+    </style>
     
 </head>
 <body>
 
 <div style="text-align:center">
-    <div id="display_lyric"></div>
-    <video id="mv_video" class="video-js vjs-default-skin"></video>
+    <div id="display_lyric" class="lyric"></div>
+    <video id="mv_video" class="video-js vjs-default-skin mv"></video>
 </div>
 
 
