@@ -59,7 +59,7 @@
                 $("#display_lyric").text(lyric_content);
             } else if (JSON.parse(event.data)["type"] == "mv") {
 				mv_path = JSON.parse(event.data)['message'];
-                $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + ' type="video/mp4"/>')
+                $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
                 mv_player.play();
             }
 
