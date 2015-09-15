@@ -187,7 +187,7 @@
                 }, 5);
     };
 
-    current_line = 0;
+    current_line = -1;
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
          
@@ -202,9 +202,9 @@
         
         if(e && e.keyCode==40 || e && e.keyCode==39){//下,右
             if (current_line <= max_line) {
+                current_line++;
                 $("#lyric_"+current_line).addClass("lyric_selected ui negative message");
                 $("#lyric_"+current_line).siblings().removeClass("lyric_selected ui negative message");
-                current_line++;
             }
         }
     };
