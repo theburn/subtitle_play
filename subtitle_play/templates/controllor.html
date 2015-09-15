@@ -195,12 +195,12 @@
             }
         }
         
-        alert(max_line) ;
         if(e && e.keyCode==40 || e && e.keyCode==39){//下,右
             if (current_line <= max_line) {
                 $("#lyric_"+current_line).addClass("lyric_selected");
                 $("#lyric_"+current_line).siblings().removeClass("lyric_selected");
                 current_line++;
+                alert(current_line);
             }
         }
     };
