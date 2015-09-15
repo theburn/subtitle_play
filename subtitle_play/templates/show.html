@@ -51,10 +51,6 @@
     var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
     register(chat_socket);
     mv_player = null;
-    videojs("mv_video", {"autoplay": false, "preload": "auto", "loop": "true"}, function(){
-      // Player (this) is initialized and ready.
-            mv_player = this;
-    });
 
 
 	if (chat_socket) {
@@ -65,6 +61,7 @@
             } else if (JSON.parse(event.data)["type"] == "mv") {
 				mv_path = JSON.parse(event.data)['message'];
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
+                var mv_player = videojs("mv_video", {"autoplay": false, "preload": "auto", "loop": "true"});
                 mv_player.play();
             }
 
