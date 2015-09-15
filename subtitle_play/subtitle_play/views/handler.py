@@ -322,7 +322,8 @@ def get_music_lyric(request):
             music_name = request.GET.get("music_name", None)
             if music_name is not None:
                 music_instance = Music.objects.get(music_name = music_name)
-                res_music["lyric"] = music_instance.music_subtitle.subtitle_file_location.readlines()
+                for line in music_instance.music_subtitle.subtitle_file_location.readlines():
+                    res_music["lyric"] = line.encode("utf-8")
                 res_music["result"] = 0
             else:
                 res_music["result"] = 4
