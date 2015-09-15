@@ -193,6 +193,9 @@
          
         if(e && e.keyCode==38 || e && e.keyCode==37){//上,左
             if (current_line > 0) {
+                $("#lyric_"+current_line).addClass("lyric_selected ui negative message");
+                $("#lyric_"+current_line).siblings().removeClass("lyric_selected ui negative message");
+                current_line--;
 
             }
         }
