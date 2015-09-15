@@ -207,6 +207,13 @@
                 $("#lyric_"+current_line).siblings().removeClass("lyric_selected ui negative message");
             }
         }
+
+        lyric_content = $("#lyric_"+current_line).text();
+        msg = "lyric#@#" + lyric_content;
+        sendMessage(chat_socket, msg);
+        
+
+
     };
 
 

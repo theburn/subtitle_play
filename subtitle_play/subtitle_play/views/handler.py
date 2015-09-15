@@ -65,7 +65,11 @@ def controllor(request):
 
 @login_required
 def show(request):
-    return render_to_response("show.html")
+    return render_to_response("show.html",
+                            {
+                                "IP" : get_ip_address("eth0"), \
+                            }, \
+                        )
 
 @login_required
 def dispatch(request):
