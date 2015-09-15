@@ -44,6 +44,9 @@
             font-weight:700;
             font-size:1.3em;
         }
+        .lyric {
+            padding-top:5px;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +87,7 @@
         <div class="column">
             <div class="ui raised segment">
                   <a class="ui orange right ribbon label">当前歌词</a>
-                  <div id="controllor_lyric" style="text-align:center; padding-top:5px">
+                  <div id="controllor_lyric" style="text-align:center">
                   <div>
             </div>
         </div>
@@ -112,7 +115,7 @@
                 max_line = play_lyric.length + 1;
                 if (play_lyric != "Error_1") {
                     for(var i=1; i<play_lyric.length;i++) {
-                        var content = '<div id="lyric_' + i + '">' + play_lyric[i-1] + '</div>';
+                        var content = '<div class="lyric" id="lyric_' + i + '">' + play_lyric[i-1] + '</div>';
                         $("#controllor_lyric").append(content);
                     }
                 }
