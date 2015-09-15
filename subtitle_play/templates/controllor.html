@@ -78,6 +78,8 @@
         <div class="column">
             <div class="ui raised segment">
                   <a class="ui orange right ribbon label">当前歌词</a>
+                  <div id="controllor_lyric">
+                  <div>
             </div>
         </div>
     </div>
@@ -96,10 +98,15 @@
                 if (data.result == 0) {
                     play_lyric = data.lyric;
                 }else{
-                    play_lyric = "Error_1"
+                    play_lyric = "Error_1";
                 }
 
-                alert(play_lyric);
+                if (play_lyric != "Error_1") {
+                    for(var i=0; i<play_lyric.length;i++) {
+                        var content = '<div id="lyric_" + i>' + play_lyric[i] + '</div>';
+                        $("#controllor_lyric").append(content);
+                    }
+                }
         })
     });
 
