@@ -11,6 +11,7 @@ import tornado.websocket
 import json
 import os
 import sys
+import logging
 reload(sys) 
 sys.setdefaultencoding('utf8')
 
