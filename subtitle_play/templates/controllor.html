@@ -58,8 +58,16 @@
                       {% for music in music_list %}
                         <tr>
                             <td>{{ music.music_name }}</td>
-                            <td><button class="ui button "><i class="play icon labeled"></i> Play </button></td>
-                            <td><button class="ui button"><i class="stop icon labeled"></i> Stop </button></td>
+                            <td>
+                                <div class="ui vertical labeled icon buttons">
+                                    <button class="ui button"><i class="play icon"></i> Play </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ui vertical labeled icon buttons">
+                                    <button class="ui button"><i class="stop icon labeled"></i> Stop </button>
+                                </div>
+                            </td>
                         </tr>
                       {% endfor %}
                       </tbody>
