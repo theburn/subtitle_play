@@ -120,6 +120,8 @@
                         var content = '<div class="lyric" id="lyric_' + i + '">' + play_lyric[i-1] + '</div>';
                         $("#controllor_lyric").append(content);
                     }
+                } else {
+                    $("#controllor_lyric").append('<div>ERROR_1</div>');
                 }
         })
     });
