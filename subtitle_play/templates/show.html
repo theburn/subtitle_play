@@ -41,9 +41,10 @@
 </head>
 <body>
 
-
-<div id="display_lyric"></div>
-<video id="mv_video" class="video-js vjs-default-skin"></video>
+<div style="text-align:center">
+    <div id="display_lyric"></div>
+    <video id="mv_video" class="video-js vjs-default-skin"></video>
+</div>
 
 
 
@@ -61,7 +62,12 @@
             } else if (JSON.parse(event.data)["type"] == "mv") {
 				mv_path = JSON.parse(event.data)['message'];
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
-                var mv_player = videojs("mv_video", {"autoplay": false, "preload": "auto", "loop": "true"});
+                var mv_player = videojs("mv_video", {"autoplay": false,
+                                                        "preload": "auto", 
+                                                        "loop": "true",
+                                                        "width": "1300",
+                                                        "height": "6500",
+                                                        });
                 mv_player.play();
             }
 
