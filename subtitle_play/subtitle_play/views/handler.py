@@ -53,7 +53,7 @@ def controllor(request):
     except:
         all_music_instance_list = []
 
-    return render_to_response("controller.html", \
+    return render_to_response("controllor.html", \
                             {
                                 "music_list":all_music_instance_list, \
                             }, \
