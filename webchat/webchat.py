@@ -98,9 +98,9 @@ class SocketHandler(tornado.websocket.WebSocketHandler):
             elif msg_type == "register":
                 if msg_content in ("controllor", "show"):
                     if msg_content == "controllor":
-                        socket_id_map["controllor"] = self
+                        SocketHandler.socket_id_map["controllor"] = self
                     else:
-                        socket_id_map["show"] = self
+                        SocketHandler.socket_id_map["show"] = self
 
                     log.info("Register : %s is online" %msg_content)
                 else:
