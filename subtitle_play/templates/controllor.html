@@ -199,8 +199,8 @@
         
         if(e && e.keyCode==40 || e && e.keyCode==39){//下,右
             if (current_line <= max_line) {
-                $("#lyric_"+current_line).addClass("lyric_selected");
-                $("#lyric_"+current_line).siblings().removeClass("lyric_selected");
+                $("#lyric_"+current_line).addClass("lyric_selected ui negative message");
+                $("#lyric_"+current_line).siblings().removeClass("lyric_selected ui negative message");
                 current_line++;
             }
         }
