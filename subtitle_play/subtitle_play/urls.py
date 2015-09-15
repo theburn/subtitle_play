@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
-from subtitle_play import settings
-from django.conf.urls.static import static
+#from subtitle_play import settings
+#from django.conf.urls.static import static
 
 from django.contrib import admin
 admin.autodiscover()
@@ -33,7 +33,7 @@ urlpatterns += patterns('subtitle_play.views',
     url(r'^delete_music/$',  'delete_music'), 
     url(r'^get_music_list/$',  'get_music_list'), 
     url(r'^get_music_args/$',  'get_music_args'), 
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
