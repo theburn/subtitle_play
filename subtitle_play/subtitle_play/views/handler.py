@@ -19,13 +19,15 @@ import time
 import xml.sax.saxutils
 import logging
 import sys
+import chardet
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 MAX_SIZE = 1024 * 1024 * 1024 * 2   # 2G
 MEDIA_ROOT = settings.MEDIA_ROOT
 
-from common_function import get_ip_address, check_music_is_exists, check_mv_is_exists, check_subtitle_is_exists
+from common_function import get_ip_address, check_music_is_exists, check_mv_is_exists, check_subtitle_is_exists, \
+                            get_file_encoding
 
 def __log_test(msg):
     log = logging.getLogger("audit")
@@ -326,8 +328,13 @@ def get_music_lyric(request):
             music_name = request.GET.get("music_name", None)
             if music_name is not None:
                 music_instance = Music.objects.get(music_name = music_name)
-                for line in music_instance.music_subtitle.subtitle_file_location.readlines():
-                    res_music["lyric"].append(line.decode("gbk").encode("utf-8"))
+                f_encoding = get_file_encoding(music_instance.music_subtitle)
+                if f_encoding.lower() in ("gbk", "gb2312"):
+                    for line in music_instance.music_subtitle.subtitle_file_location.readlines():
+                        res_music["lyric"].append(line.decode("gbk").encode("utf-8"))
+                else:
+                    for line in music_instance.music_subtitle.subtitle_file_location.readlines():
+                        res_music["lyric"].append(line)
                 res_music["result"] = 0
             else:
                 res_music["result"] = 4

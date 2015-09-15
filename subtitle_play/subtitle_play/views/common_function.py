@@ -7,6 +7,7 @@ from django.template import Context
 from subtitle_play import settings
 from django.template import RequestContext
 from subtitle_play.music.models import *
+import chardet
 
 import socket
 import fcntl
@@ -47,6 +48,15 @@ def check_subtitle_is_exists(subtitle_name):
         return False
 
 
+
+def get_file_encoding(subtitle_instance):
+    f=subtitle_instance.subtitle_file_location.file
+    f_encoding = None
+    with open(f,"rb") as f:
+        data = f.read()
+        f_encoding = chardet.detect(data)["encoding"]
+
+    return f_encoding
 
 
 
