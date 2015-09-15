@@ -111,7 +111,7 @@
                     play_lyric = "Error_1";
                 }
 
-                alert(play_lyric);
+                //alert(play_lyric);
                 $("#controllor_lyric").append('<div id="lyric_0">《' + play_music_name + '》</div>');
 
                 max_line = play_lyric.length + 1;
@@ -124,6 +124,28 @@
                     $("#controllor_lyric").append('<div>ERROR_1</div>');
                 }
         })
+
+         mv_name = null;
+         $.get("/get_music_args/", 
+                {
+                    music_name:play_music_name,
+                },
+                function(data) {
+                if (data.result == 0) {
+                    mv_name = data.args_list["mv"];
+                    var msg = "mv#@#" + mv_name;
+                    sendMessage(chat_socket,msg);
+                }else{
+                    mv_name = "Error_2";
+                }
+        });
+
+
+
+
+
+
+
     });
 
     $(".stop_button").on("click", function(){
