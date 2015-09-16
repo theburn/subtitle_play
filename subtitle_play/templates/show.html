@@ -77,7 +77,12 @@
 
     var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
     register(chat_socket);
-    mv_player = null;
+    mv_player = videojs("mv_video", {"autoplay": false,
+                                                        "preload": "auto", 
+                                                        "loop": "true",
+                                                        "width": "1900px",
+                                                        "height": "1080px",
+                                                        });
 
 
 	if (chat_socket) {
@@ -86,15 +91,10 @@
 				lyric_content = JSON.parse(event.data)['message'];
                 $("#display_lyric").text(lyric_content);
             } else if (JSON.parse(event.data)["type"] == "mv") {
+                $("#display_lyric").empty();
 				mv_path = JSON.parse(event.data)['message'];
                 $("#mv_video").empty();
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
-                var mv_player = videojs("mv_video", {"autoplay": false,
-                                                        "preload": "auto", 
-                                                        "loop": "true",
-                                                        "width": "1900px",
-                                                        "height": "1080px",
-                                                        });
 
                 $("#mv_show").show();
                 $("#standby_img").hide();
@@ -105,6 +105,7 @@
                 if (ctrl_content == "standby") {
                     $("#mv_show").hide();
                     $("#standby_img").show();
+                    mv_player.stop();
                 }
             }
 
