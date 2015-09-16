@@ -86,6 +86,7 @@
                 $("#display_lyric").text(lyric_content);
             } else if (JSON.parse(event.data)["type"] == "mv") {
 				mv_path = JSON.parse(event.data)['message'];
+                alert(mv_path);
                 play_mv(mv_path);
                 /*
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
@@ -138,6 +139,7 @@
         $('#show_div').fadeIn('slow');
         $("#jquery_mv_player").jPlayer("destroy");
         $("#jquery_mv_player").jPlayer("clearMedia");
+        alert(mv_path);
         $('#jquery_mv_player').jPlayer({
                     ready:function (event) {
                         $(this).jPlayer("setMedia", {
