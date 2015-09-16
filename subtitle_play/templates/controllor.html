@@ -61,7 +61,6 @@
                       <thead>
                         <tr>
                             <th>Music</th>
-                            <th>Standby</th>
                             <th>Play</th>
                             <th>Stop</th>
                         </tr>
@@ -70,11 +69,6 @@
                       {% for music in music_list %}
                       <tr id={{ music.music_name }}>
                             <td>{{ music.music_name }}</td>
-                            <td>
-                                <div class="ui vertical labeled icon buttons">
-                                    <button class="ui labeled icon button standby_button"><i class="left chevron icon"></i>Standby</button>
-                                </div>
-                            </td>
                             <td>
                                 <div class="ui vertical labeled icon buttons">
                                     <button class="ui button play_button"><i class="play icon"></i> Play </button>
@@ -157,19 +151,10 @@
     });
 
     $(".stop_button").on("click", function(){
-        stop_music_name = $(this).closest("tr").attr("id");
-        alert(stop_music_name);
-
-    });
-
-    $(".standby_button").on("click", function(){
         var msg = "ctrl#@#standby";
         sendMessage(chat_socket,msg);
 
     });
-
-
-
 
 
 
