@@ -105,6 +105,7 @@
     register(chat_socket);
 
     $(".play_button").on("click", function(){
+        current_line = -1;
         play_music_name = $(this).closest("tr").attr("id");
         $.get("/get_music_lyric/", 
                 {
