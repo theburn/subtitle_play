@@ -55,16 +55,26 @@
     </style>
     
 </head>
-<body>
+<body style="background:black">
 
-<div style="text-align:center;width:100%;background:black">
+<div style="text-align:center;width:100%;background:black" id="mv_show">
     <div id="display_lyric" class="lyric"></div>
     <video id="mv_video" class="video-js vjs-default-skin mv"></video>
 </div>
 
+<div id="standby_img">
+    <img src="/static/image/standby_img.jpg"></img>
+</div>
+
+
 
 
 <script type="text/javascript">
+
+    $("#mv_show").hide();
+    $("#standby_img").show();
+
+
     var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
     register(chat_socket);
     mv_player = null;
@@ -84,6 +94,9 @@
                                                         "width": "1900px",
                                                         "height": "1080px",
                                                         });
+
+                $("#mv_show").show();
+                $("#standby_img").hide();
                 mv_player.requestFullscreen();
                 mv_player.play();
             }
