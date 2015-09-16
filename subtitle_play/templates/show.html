@@ -144,10 +144,10 @@
                     ready:function (event) {
                         $(this).jPlayer("setMedia", {
                             mp4:"/media/mv_templates/" + mv_path
-                        }).jPlayer("play");
+                        });
                     },
                     supplied:"mp4"
-                });
+                }).jPlayer("play");
     };
 
 
