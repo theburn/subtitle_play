@@ -138,7 +138,7 @@
         $('#show_div').fadeIn('slow');
         $("#jquery_mv_player").jPlayer("destroy");
         $("#jquery_mv_player").jPlayer("clearMedia");
-        mv_player = $('#jquery_mv_player').jPlayer({
+        $('#jquery_mv_player').jPlayer({
                     ready:function (event) {
                         $(this).jPlayer("setMedia", {
                             mp4:"/media/mv_templates/" + mv_path
