@@ -45,7 +45,7 @@
             color:white;
             font-size: xx-large;
             font-weight: bold;
-            width:800px;
+            width:100%;
 
         }
         .mv {
@@ -55,19 +55,34 @@
     </style>
     
 </head>
-<body>
+<body style="background:black">
 
-<div style="text-align:center">
+<div style="text-align:center;width:100%;background:black" id="mv_show">
     <div id="display_lyric" class="lyric"></div>
     <video id="mv_video" class="video-js vjs-default-skin mv"></video>
 </div>
 
+<div id="standby_img">
+    <img src="/static/image/standby_img.jpg"></img>
+</div>
+
+
 
 
 <script type="text/javascript">
+
+    $("#mv_show").hide();
+    $("#standby_img").show();
+
+
     var chat_socket = new WebSocket('ws://{{ IP }}:10030/chat');
     register(chat_socket);
-    mv_player = null;
+    mv_player = videojs("mv_video", {"autoplay": false,
+                                                        "preload": "auto", 
+                                                        "loop": "true",
+                                                        "width": "1900px",
+                                                        "height": "1080px",
+                                                        });
 
 
 	if (chat_socket) {
@@ -76,16 +91,22 @@
 				lyric_content = JSON.parse(event.data)['message'];
                 $("#display_lyric").text(lyric_content);
             } else if (JSON.parse(event.data)["type"] == "mv") {
+                $("#display_lyric").empty();
 				mv_path = JSON.parse(event.data)['message'];
+                $("#mv_video").empty();
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
-                var mv_player = videojs("mv_video", {"autoplay": false,
-                                                        "preload": "auto", 
-                                                        "loop": "true",
-                                                        "width": "800px",
-                                                        "height": "600px",
-                                                        });
+
+                $("#mv_show").show();
+                $("#standby_img").hide();
                 mv_player.requestFullscreen();
                 mv_player.play();
+            } else if (JSON.parse(event.data)["type"] == "ctrl") {
+				ctrl_content = JSON.parse(event.data)['message'];
+                if (ctrl_content == "standby") {
+                    $("#mv_show").hide();
+                    $("#standby_img").show();
+                    mv_player.stop();
+                }
             }
 
 		}
