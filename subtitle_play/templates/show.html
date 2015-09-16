@@ -31,11 +31,12 @@
     <link rel="stylesheet" type="text/css" href="/static/js/components/tab.css">
     <link rel="stylesheet" type="text/css" href="/static/css/docs.css">
     <link rel="stylesheet" type="text/css" href="/static/css/video-js.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/jplayer.blue.monday.min.css">
 
 
     <script src="/static/js/jquery-ui-1.10.1.custom.min.js"></script>
     <script src="/static/js/components/tab.min.js"></script>
-    <script src="/static/js/video.js"></script>
+    <script src="/static/js/jquery.jplayer.min.js"></script>
 
     <style type="text/css">
         .lyric {
@@ -57,9 +58,17 @@
 </head>
 <body>
 
-<div style="text-align:center">
+<div style="text-align:center" id=show_div>
     <div id="display_lyric" class="lyric"></div>
-    <video id="mv_video" class="video-js vjs-default-skin mv"></video>
+    <!--
+        <video id="mv_video" class="video-js vjs-default-skin mv"></video>
+    -->
+
+    <div id="jquery_mv_player" class="jp-video-full " role="application" aria-label="media player">
+    </div>
+
+
+
 </div>
 
 
@@ -77,6 +86,8 @@
                 $("#display_lyric").text(lyric_content);
             } else if (JSON.parse(event.data)["type"] == "mv") {
 				mv_path = JSON.parse(event.data)['message'];
+                play_mv(mv_path);
+                /*
                 $("#mv_video").append('<source src="/media/mv_templates/' + mv_path + '" type="video/mp4"/>');
                 var mv_player = videojs("mv_video", {"autoplay": false,
                                                         "preload": "auto", 
@@ -86,6 +97,7 @@
                                                         });
                 mv_player.requestFullscreen();
                 mv_player.play();
+                */
             }
 
 		}
@@ -119,6 +131,25 @@
                     }
                 }, 5);
     };
+
+    
+    function play_mv(mv_path) {
+        $('#show_div').fadeOut('slow');
+        $('#show_div').fadeIn('slow');
+        $("#jquery_mv_player").jPlayer("destroy");
+        $("#jquery_mv_player").jPlayer("clearMedia");
+        mv_player = $('#jquery_mv_player').jPlayer({
+                    ready:function (event) {
+                        $(this).jPlayer("setMedia", {
+                            mp4:"/media/mv_templates/" + mv_path
+                        }).jPlayer("play");
+                    },
+                    supplied:"mp4"
+                });
+    };
+
+
+
 
 
 	
