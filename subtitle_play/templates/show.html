@@ -143,10 +143,10 @@
         $('#jquery_mv_player').jPlayer({
                     ready:function (event) {
                         $(this).jPlayer("setMedia", {
-                            WebMv:"http://{{ IP }}/media/mv_templates/" + mv_path,
+                            webm:"http://{{ IP }}/media/mv_templates/" + mv_path,
                         });
                     },
-                    supplied:"mp4",
+                    supplied:"webm",
                 }).jPlayer("play");
     };
 
