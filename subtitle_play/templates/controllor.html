@@ -60,15 +60,21 @@
                     <table class="ui celled table" style="text-align:center">
                       <thead>
                         <tr>
-                            <th>歌曲</th>
-                            <th>播放</th>
-                            <th>停止</th>
+                            <th>Music</th>
+                            <th>Standby</th>
+                            <th>Play</th>
+                            <th>Stop</th>
                         </tr>
                       </thead>
                       <tbody>
                       {% for music in music_list %}
                       <tr id={{ music.music_name }}>
                             <td>{{ music.music_name }}</td>
+                            <td>
+                                <div class="ui vertical labeled icon buttons">
+                                    <button class="ui labeled icon button standby_button"><i class="left chevron icon"></i>Standby</button>
+                                </div>
+                            </td>
                             <td>
                                 <div class="ui vertical labeled icon buttons">
                                     <button class="ui button play_button"><i class="play icon"></i> Play </button>
