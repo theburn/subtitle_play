@@ -163,6 +163,7 @@ def upload_file(request, target):
 
     log_event = u"上传" + name
     res_key = str(res_upload['result'])
+    __log_test(res_key)
     log = logging.getLogger("audit")
     log.debug("%s %s %s %s",  \
             request.session['ip'],  \
