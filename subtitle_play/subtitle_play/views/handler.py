@@ -165,8 +165,10 @@ def upload_file(request, target):
     res_key = str(res_upload['result'])
     log = logging.getLogger("audit")
     log.debug("%s %s %s %s",  \
-            request.session['ip'],  request.session['user_name'],  \
-            log_event,  log_msg[res_key]) 
+            request.session['ip'],  \
+            request.session['user_name'],  \
+            log_event,  \
+            log_msg[res_key]) 
 
     result = []
     if exists_flag:
