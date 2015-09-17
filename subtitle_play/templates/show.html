@@ -92,8 +92,8 @@
                 mv_player = videojs("mv_video", {"autoplay": false,
                                                         "preload": "auto", 
                                                         "loop": "true",
-                                                        "width": "1900px",
-                                                        "height": "1080px",
+                                                        "width": "1280px",
+                                                        "height": "720px",
                                                         });
 
                 $("#mv_show").show();
@@ -106,6 +106,7 @@
                     $("#mv_show").hide();
                     $("#standby_img").show();
                     mv_player.dispose();
+                    $("#mv_show").append('<video id="mv_video" class="video-js vjs-default-skin mv"></video>');
                 }
             }
 
