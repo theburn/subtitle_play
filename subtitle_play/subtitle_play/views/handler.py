@@ -97,7 +97,7 @@ def upload_file(request, target):
     name = "None"
     target_flag = True
     exists_flag = False
-    if request.method=='POST':
+    if request.method == 'POST':
         try:
             if target == "mv":
                 UPLOAD_PATH = os.path.join(MEDIA_ROOT, "mv_templates")
@@ -119,6 +119,7 @@ def upload_file(request, target):
 
                 if os.path.exists(filename):
                     exists_flag = True
+                    res_upload["result"] = 10
                 else:
                     if f.file.size > MAX_SIZE:
                         res_upload["result"] = 5
@@ -163,7 +164,6 @@ def upload_file(request, target):
 
     log_event = u"上传" + name
     res_key = str(res_upload['result'])
-    __log_test(res_key)
     log = logging.getLogger("audit")
     log.debug("%s %s %s %s",  \
             request.session['ip'],  \
